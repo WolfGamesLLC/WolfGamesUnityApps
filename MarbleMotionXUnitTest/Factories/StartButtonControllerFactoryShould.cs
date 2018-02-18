@@ -9,15 +9,15 @@ namespace MarbleMotionXUnitTest.Factories
     /// <summary>
     /// Test suite for the StartButtonModelFactory
     /// </summary>
-    public class StartButtonModelFactoryShould
+    public class StartButtonControllerFactoryShould
     {
         /// <summary>
-        /// Verify a start button model factory can be created
+        /// Verify a start button controller factory can be created
         /// </summary>
         [Fact]
-        public void CreateStartButtonModelFactory()
+        public void CreateStartButtonControllerFactory()
         {
-            Assert.NotNull(new StartButtonModelFactory());
+            Assert.NotNull(new StartButtonControllerFactory());
         }
     }
 }
