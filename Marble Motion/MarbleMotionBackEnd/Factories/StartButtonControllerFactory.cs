@@ -1,5 +1,6 @@
 ﻿using MarbleMotionBackEnd.Controllers;
 using MarbleMotionBackEnd.Interfaces;
+using System;
 
 namespace MarbleMotionBackEnd.Factories
 {
@@ -15,6 +16,9 @@ namespace MarbleMotionBackEnd.Factories
         /// </summary>
         public StartButtonControllerFactory(IStartButtonModel model, IStartButtonView view)
         {
+            if (model == null) throw new ArgumentNullException(nameof(model));
+            if (view == null) throw new ArgumentNullException(nameof(view));
+
             Controller = new StartButtonController(model, view);
         }
     }
