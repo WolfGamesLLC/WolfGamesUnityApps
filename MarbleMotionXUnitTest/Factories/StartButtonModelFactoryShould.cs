@@ -1,4 +1,5 @@
 ﻿using MarbleMotionBackEnd.Factories;
+using MarbleMotionBackEnd.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,12 +13,21 @@ namespace MarbleMotionXUnitTest.Factories
     public class StartButtonModelFactoryShould
     {
         /// <summary>
-        /// Verify a start button model factory can be created
+        /// Verify a <see cref="StartButtonModelFactory"/> can be created
         /// </summary>
         [Fact]
         public void CreateStartButtonModelFactory()
         {
             Assert.NotNull(new StartButtonModelFactory());
+        }
+
+        /// <summary>
+        /// Verify that a standard <see cref="StartButtonModel"/> object can be created
+        /// </summary>
+        [Fact]
+        public void CreateStartButtonModel()
+        {
+            Assert.IsAssignableFrom<IStartButtonModel>(new StartButtonModelFactory().Model);
         }
     }
 }
