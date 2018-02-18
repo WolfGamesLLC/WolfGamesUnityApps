@@ -1,4 +1,5 @@
 ﻿using MarbleMotionBackEnd.Factories;
+using MarbleMotionBackEnd.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,14 @@ namespace MarbleMotionXUnitTest.Factories
         [Fact]
         public void CreateStartButtonControllerFactory()
         {
-            Assert.NotNull(new StartButtonControllerFactory());
+            Assert.NotNull(new StartButtonControllerFactory(null, null));
+        }
+
+        [Fact]
+        public void CreateStartButtonController()
+        {
+            IStartButtonControllerFactory factory = new StartButtonControllerFactory(null, null);
+            Assert.IsAssignableFrom<IStartButtonController>(factory.Controller);
         }
     }
 }
