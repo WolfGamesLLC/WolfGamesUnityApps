@@ -11,8 +11,11 @@ namespace MarbleMotionBackEnd.Factories
         /// <summary>
         /// Return an object that implements the <see cref="IStartButtonModel"/> interface
         /// </summary>
-        public IStartButtonModel Model { get; }
+        public IStartButtonModel Model { get; private set; }
 
+        /// <summary>
+        /// Create the instance of the <see cref="StartButtonModel"/>
+        /// </summary>
         public StartButtonModelFactory()
         {
             Model = new StartButtonModel();
