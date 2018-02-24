@@ -8,10 +8,16 @@ using UnityEngine;
 
 public class StartButtonView : MonoBehaviour, IStartButtonView
 {
+    /// <summary>
+    /// Event for mapping actions to the OnClicked event
+    /// </summary>
     public event EventHandler<StartButtonClickedEventArgs> OnClicked = (sender, e) => { };
 
-    // Update is called once per frame
-    void Update () {
-		
+    /// <summary>
+    /// Method used to allow unity to run the OnClicked event
+    /// </summary>
+    public void RunOnClickedEvent()
+    {
+        OnClicked(this, new StartButtonClickedEventArgs());
 	}
 }
