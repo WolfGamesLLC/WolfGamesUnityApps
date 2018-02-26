@@ -1,4 +1,5 @@
 ﻿using MarbleMotionBackEnd.Interfaces;
+using System;
 
 namespace MarbleMotionBackEnd.Controllers
 {
@@ -12,8 +13,8 @@ namespace MarbleMotionBackEnd.Controllers
 
         public StartButtonController(IStartButtonModel model, IStartButtonView view)
         {
-            this.model = model;
-            this.view = view;
+            this.model = model ?? throw new ArgumentNullException(nameof(model));
+            this.view = view ?? throw new ArgumentNullException(nameof(view));
         }
     }
 }

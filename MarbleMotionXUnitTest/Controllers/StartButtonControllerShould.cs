@@ -11,6 +11,16 @@ namespace MarbleMotionXUnitTest
     /// </summary>
     public class StartButtonControllerShould
     {
+        private Mock<IStartButtonModel> _mockModel;
+
+        /// <summary>
+        /// Initialize the test suite
+        /// </summary>
+        public StartButtonControllerShould()
+        {
+            _mockModel = new Mock<IStartButtonModel>();
+        }
+
         /// <summary>
         /// Throw an <see cref="ArgumentNullException"/> when a <see cref="IStartButtonModel"/> is not injected on construction
         /// </summary>
@@ -18,7 +28,7 @@ namespace MarbleMotionXUnitTest
         public void ThrowArgumentNullExceptionFromConstructorWithNullModel()
         {
             var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(null, null));
-            Assert.Equal("Value cannot be null.\r\nParameter name: StartButtonModel", ex.Message);
+            Assert.Equal("Value cannot be null.\r\nParameter name: model", ex.Message);
         }
 
         /// <summary>
@@ -27,8 +37,8 @@ namespace MarbleMotionXUnitTest
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullView()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(null, null));
-            Assert.Equal("Value cannot be null.\r\nParameter name: StartButtonModel", ex.Message);
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(_mockModel.Object, null));
+            Assert.Equal("Value cannot be null.\r\nParameter name: view", ex.Message);
         }
 
         /// <summary>
@@ -38,7 +48,7 @@ namespace MarbleMotionXUnitTest
         [Fact]
         public void CreateStartButtonController()
         {
-            Assert.NotNull(new StartButtonController((new Mock<IStartButtonModel>()).Object, (new Mock<IStartButtonView>().Object)));
+            Assert.NotNull(new StartButtonController(_mockModel.Object, (new Mock<IStartButtonView>().Object)));
         }
     }
 }
