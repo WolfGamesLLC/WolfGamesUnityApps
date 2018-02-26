@@ -3,6 +3,7 @@ using UnityEngine.Analytics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using MarbleMotionBackEnd.Factories;
 
 public class GameController : MonoBehaviour
 {
@@ -11,6 +12,14 @@ public class GameController : MonoBehaviour
     public GameObject mainMenu;
 
     Game game;
+
+    // Initilaize the game
+    private void Awake()
+    {
+        StartButtonViewFactory startButtonViewFactory = new StartButtonViewFactory();
+        StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
+        StartButtonControllerFactory startButtonControllerFactory = new StartButtonControllerFactory(startButtonModelFactory.Model, startButtonViewFactory.View);
+    }
 
     // Use this for initialization
     void Start()
