@@ -7,15 +7,17 @@
 
     <Authors>D. Reinhart</Authors>
 
-    <Company>Wolf Games LLC.</Company>
+    <Company>Wolf Games LLC</Company>
 
-    <Description>Test project for the Marble Motion game</Description>
+    <Product>Marble Motion Game Engine</Product>
 
-    <Copyright>2017 Wolf Games LLC</Copyright>
+    <Description>The back end of the Marble Motion game</Description>
+
+    <Copyright>Wolf Games @ 2017</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.0\MarbleMotionXUnitTest.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp2.0\MarbleMotionBackEnd.Integration.XUnitTestSuite.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,5 @@
 using MarbleMotionBackEnd.Controllers;
+using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
 using Moq;
 using System;
@@ -12,6 +13,8 @@ namespace MarbleMotionXUnitTest
     public class StartButtonControllerShould
     {
         private Mock<IStartButtonModel> _mockModel;
+        private StartButtonController _dut;
+        private Mock<IStartButtonView> _mockView;
 
         /// <summary>
         /// Initialize the test suite
@@ -19,6 +22,8 @@ namespace MarbleMotionXUnitTest
         public StartButtonControllerShould()
         {
             _mockModel = new Mock<IStartButtonModel>();
+            _mockView = new Mock<IStartButtonView>();
+            _dut = new StartButtonController(_mockModel.Object, _mockView.Object);
         }
 
         /// <summary>
@@ -48,7 +53,16 @@ namespace MarbleMotionXUnitTest
         [Fact]
         public void CreateStartButtonController()
         {
-            Assert.NotNull(new StartButtonController(_mockModel.Object, (new Mock<IStartButtonView>().Object)));
+            Assert.NotNull(new StartButtonController(_mockModel.Object, _mockView.Object));
+        }
+
+        /// <summary>
+        /// Verify that the <see cref="IStartButtonView.OnClicked"/> event is set
+        /// </summary>
+        [Fact]
+        public void LoadPlayerDataOnClickedEvent()
+        {
+            _dut.HandleOnClickedEvent(this, new StartButtonClickedEventArgs());
         }
     }
 }
