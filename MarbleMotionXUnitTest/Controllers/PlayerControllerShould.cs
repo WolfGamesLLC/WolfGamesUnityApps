@@ -15,7 +15,7 @@ namespace MarbleMotionXUnitTest
         [Fact(Skip = "Until Start Button is working")]
         public void ThrowArgumentNullExceptionFromConstructorWithNullPlayerModel()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new MarbleMotionBackEnd.Controllers.PlayerController(null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new PlayerController());
             Assert.Equal("Value cannot be null.\r\nParameter name: playerModel", ex.Message);
         }
     }

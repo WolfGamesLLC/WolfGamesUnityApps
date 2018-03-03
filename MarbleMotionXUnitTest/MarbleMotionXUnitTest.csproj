@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Marble Motion\Marble Motion.csproj" />
-    <ProjectReference Include="..\Marble Motion\MarbleMotionBackEnd\MarbleMotionBackEnd.csproj" />
+    <ProjectReference Include="..\MarbleMotionBackEnd\MarbleMotionBackEnd.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,12 +4,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marble Motion", "Marble Motion.csproj", "{D3EF338A-B825-3E2B-A379-4D24F3CCDDE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB} = {10A8D11F-17FE-4207-ADAF-A01776B2ADCB}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionXUnitTest", "..\MarbleMotionXUnitTest\MarbleMotionXUnitTest.csproj", "{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}"
+	ProjectSection(ProjectDependencies) = postProject
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB} = {10A8D11F-17FE-4207-ADAF-A01776B2ADCB}
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionBackEnd", "MarbleMotionBackEnd\MarbleMotionBackEnd.csproj", "{174795E9-D86F-47BD-9FE4-8684C456C479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionBackEnd.Integration.XUnitTestSuite", "..\MarbleMotionBackEnd.Integration.XUnitTestSuite\MarbleMotionBackEnd.Integration.XUnitTestSuite.csproj", "{A5795362-E670-4A8D-B960-7703DECC6B08}"
+	ProjectSection(ProjectDependencies) = postProject
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB} = {10A8D11F-17FE-4207-ADAF-A01776B2ADCB}
+		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08} = {A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleMotionBackEnd.Integration.XUnitTestSuite", "..\MarbleMotionBackEnd.Integration.XUnitTestSuite\MarbleMotionBackEnd.Integration.XUnitTestSuite.csproj", "{A5795362-E670-4A8D-B960-7703DECC6B08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionBackEnd", "..\MarbleMotionBackEnd\MarbleMotionBackEnd.csproj", "{10A8D11F-17FE-4207-ADAF-A01776B2ADCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +35,14 @@ Global
 		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{174795E9-D86F-47BD-9FE4-8684C456C479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{174795E9-D86F-47BD-9FE4-8684C456C479}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{174795E9-D86F-47BD-9FE4-8684C456C479}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{174795E9-D86F-47BD-9FE4-8684C456C479}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5795362-E670-4A8D-B960-7703DECC6B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5795362-E670-4A8D-B960-7703DECC6B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5795362-E670-4A8D-B960-7703DECC6B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5795362-E670-4A8D-B960-7703DECC6B08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
