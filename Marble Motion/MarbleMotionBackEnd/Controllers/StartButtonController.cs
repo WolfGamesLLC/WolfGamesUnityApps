@@ -1,6 +1,9 @@
 ﻿using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
 using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace MarbleMotionBackEnd.Controllers
 {
@@ -9,6 +12,7 @@ namespace MarbleMotionBackEnd.Controllers
     /// </summary>
     public class StartButtonController : IStartButtonController
     {
+        static HttpClient client = new HttpClient();
         private readonly IStartButtonModel _model;
         private readonly IStartButtonView _view;
 
@@ -22,7 +26,7 @@ namespace MarbleMotionBackEnd.Controllers
             _model = model ?? throw new ArgumentNullException(nameof(model));
             _view = view ?? throw new ArgumentNullException(nameof(view));
 
-            _view.OnClicked += HandleOnClickedEvent;
+//            _view.OnClicked += HandleOnClickedEvent;
         }
 
         /// <summary>
@@ -30,9 +34,30 @@ namespace MarbleMotionBackEnd.Controllers
         /// </summary>
         /// <param name="sender">A reference to the object that fired the event</param>
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
-        public void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
+        public async Task<string> HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            throw new NotImplementedException();
+            // Update port # in the following line.
+            client.BaseAddress = new Uri("https://localhost:44340/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/ion+json"));
+
+            var product = await GetProductAsync("https://localhost:44340/players");
+
+            return product;
         }
+
+        static async Task<string> GetProductAsync(string path)
+        {
+            string player = null;
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                player = await response.Content.ReadAsStringAsync();
+            }
+
+            return player;
+        }
+
     }
 }

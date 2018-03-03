@@ -3,14 +3,17 @@ using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
 using Moq;
 using System;
+using System.Threading.Tasks;
+using WGXUnit.Facts;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace MarbleMotionXUnitTest
 {
     /// <summary>
     /// Test suite for the <see cref="StartButtonController"/>
     /// </summary>
-    public class StartButtonControllerShould
+    public class StartButtonControllerShould : FactWriteToStdOut
     {
         private Mock<IStartButtonModel> _mockModel;
         private StartButtonController _dut;
@@ -19,7 +22,8 @@ namespace MarbleMotionXUnitTest
         /// <summary>
         /// Initialize the test suite
         /// </summary>
-        public StartButtonControllerShould()
+        /// <param name="outputHelper">Allows the test to write data to stdout</param>
+        public StartButtonControllerShould(ITestOutputHelper outputHelper) : base(outputHelper)
         {
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
@@ -60,9 +64,10 @@ namespace MarbleMotionXUnitTest
         /// Verify that the <see cref="IStartButtonView.OnClicked"/> event is set
         /// </summary>
         [Fact]
-        public void LoadPlayerDataOnClickedEvent()
+        public async void LoadPlayerDataOnClickedEventAsync()
         {
-            _dut.HandleOnClickedEvent(this, new StartButtonClickedEventArgs());
+            var res = await _dut.HandleOnClickedEvent(this, new StartButtonClickedEventArgs());
+            OutputHelper.WriteLine("Result: " + res);
         }
     }
 }

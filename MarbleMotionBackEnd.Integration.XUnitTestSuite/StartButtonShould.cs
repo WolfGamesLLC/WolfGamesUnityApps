@@ -33,8 +33,8 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         public void RaiseOnClickedEvent()
         {
             var dut = new StartButtonController(_mockModel.Object, _mockView.Object);
-            Assert.Throws<NotImplementedException>(() => Mock.Get(_mockView.Object)
-                .Raise(e => e.OnClicked += null, new StartButtonClickedEventArgs()));
+            object[] parms = { this, new StartButtonClickedEventArgs() };
+            Assert.Throws<NotImplementedException>(() => _mockView.Raise(e => e.OnClicked += null, parms));
         }
     }
 }
