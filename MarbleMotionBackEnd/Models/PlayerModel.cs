@@ -13,5 +13,10 @@ namespace MarbleMotionBackEnd.Models
         public PlayerModel()
         {
         }
+
+        /// <summary>
+        /// Database generated record key for this table
+        /// </summary>
+        public string Id { get; set; }
     }
 }

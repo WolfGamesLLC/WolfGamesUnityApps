@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using MarbleMotionBackEnd.Factories;
+using MarbleMotionBackEnd.Models;
 
 public class GameController : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class GameController : MonoBehaviour
     {
         StartButtonViewFactory startButtonViewFactory = new StartButtonViewFactory();
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
-        StartButtonControllerFactory startButtonControllerFactory = new StartButtonControllerFactory(startButtonModelFactory.Model, startButtonViewFactory.View);
+        StartButtonControllerFactory startButtonControllerFactory = new StartButtonControllerFactory(startButtonModelFactory.Model, 
+                                                                                                    startButtonViewFactory.View,
+                                                                                                    new PlayerModel());
     }
 
     // Use this for initialization
@@ -35,7 +38,7 @@ public class GameController : MonoBehaviour
         //        SaveLoad.Load();
         //        game.Score = SaveLoad.data.score;
 
-        StartCoroutine(GetScores());
+//        StartCoroutine(GetScores());
     }
 
     // Update is called once per frame
@@ -61,7 +64,7 @@ public class GameController : MonoBehaviour
         //        Analytics.SetUserGender(Gender.Male);
         //        Analytics.SetUserBirthYear(2014);
 
-        PostScores(transform.position.x.ToString(), transform.position.z.ToString(), game.Score);
+//        PostScores(transform.position.x.ToString(), transform.position.z.ToString(), game.Score);
     }
 
     private string secretKey = "mySecretKey"; // Edit this value and make sure it's the same as the one stored on the server

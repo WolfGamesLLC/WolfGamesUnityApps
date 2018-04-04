@@ -15,6 +15,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         private Mock<IStartButtonModel> _mockModel;
         private StartButtonController _dut;
         private Mock<IStartButtonView> _mockView;
+        private Mock<IPlayerModel> _mockPlayer;
 
         /// <summary>
         /// Initialize the test suite
@@ -23,7 +24,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         {
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
-            _dut = new StartButtonController(_mockModel.Object, _mockView.Object);
+            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer.Object);
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         [Fact]
         public void RaiseOnClickedEvent()
         {
-            var dut = new StartButtonController(_mockModel.Object, _mockView.Object);
+            var dut = new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer.Object);
             object[] parms = { this, new StartButtonClickedEventArgs() };
             Assert.Throws<NotImplementedException>(() => _mockView.Raise(e => e.OnClicked += null, parms));
         }

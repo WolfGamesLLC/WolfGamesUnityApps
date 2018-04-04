@@ -5,5 +5,6 @@
     /// </summary>
     public interface IPlayerModel
     {
+        string Id { get; set; }
     }
 }

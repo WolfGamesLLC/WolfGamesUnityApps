@@ -15,18 +15,21 @@ namespace MarbleMotionBackEnd.Controllers
         static HttpClient client = new HttpClient();
         private readonly IStartButtonModel _model;
         private readonly IStartButtonView _view;
+        private readonly IPlayerModel _player;
 
         /// <summary>
         /// Initialize a <see cref="StartButtonController"/> object
         /// </summary>
         /// <param name="model">an instance of an object that implements <see cref="IStartButtonModel"/></param>
         /// <param name="view">an instance of an object that implements <see cref="IStartButtonView"/></param>
-        public StartButtonController(IStartButtonModel model, IStartButtonView view)
+        /// <param name="player">an instance of an object that implements <see cref="IPlayerModel"/></param>
+        public StartButtonController(IStartButtonModel model, IStartButtonView view, IPlayerModel player)
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
             _view = view ?? throw new ArgumentNullException(nameof(view));
+            _player = player ?? throw new ArgumentNullException(nameof(player));
 
-//            _view.OnClicked += HandleOnClickedEvent;
+            _view.OnClicked += HandleOnClickedEvent;
         }
 
         /// <summary>
@@ -34,30 +37,19 @@ namespace MarbleMotionBackEnd.Controllers
         /// </summary>
         /// <param name="sender">A reference to the object that fired the event</param>
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
-        public async Task<string> HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
+        public async void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            // Update port # in the following line.
-            client.BaseAddress = new Uri("https://localhost:44340/");
+            _player.Id = "1";
+            client.BaseAddress = new Uri("https://localhost:44340/api");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/ion+json"));
 
-            var product = await GetProductAsync("https://localhost:44340/players");
-
-            return product;
-        }
-
-        static async Task<string> GetProductAsync(string path)
-        {
-            string player = null;
-            HttpResponseMessage response = await client.GetAsync(path);
+            HttpResponseMessage response = await client.GetAsync("https://localhost:44340/api/players");
             if (response.IsSuccessStatusCode)
             {
-                player = await response.Content.ReadAsStringAsync();
+                _player.Id = await response.Content.ReadAsStringAsync();
             }
-
-            return player;
         }
-
     }
 }
