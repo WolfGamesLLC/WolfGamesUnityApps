@@ -30,6 +30,11 @@ namespace MarbleMotionBackEnd.Controllers
             _player = player ?? throw new ArgumentNullException(nameof(player));
 
             _view.OnClicked += HandleOnClickedEvent;
+
+            client.BaseAddress = new Uri("https://localhost:44340/api");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/ion+json"));
         }
 
         /// <summary>
@@ -40,10 +45,6 @@ namespace MarbleMotionBackEnd.Controllers
         public async void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
             _player.Id = "1";
-            client.BaseAddress = new Uri("https://localhost:44340/api");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/ion+json"));
 
             HttpResponseMessage response = await client.GetAsync("https://localhost:44340/api/players");
             if (response.IsSuccessStatusCode)

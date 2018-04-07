@@ -24,6 +24,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         {
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
+            _mockPlayer = new Mock<IPlayerModel>();
             _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer.Object);
         }
 
