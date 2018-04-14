@@ -1,7 +1,9 @@
 ﻿using MarbleMotionBackEnd.Services;
+using MarbleMotionXUnitTest.TestingUtilities;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using Xunit;
@@ -24,14 +26,21 @@ namespace MarbleMotionXUnitTest.Services
             Assert.Equal("Value cannot be null.\r\nParameter name: client", ex.Message);
         }
 
+        /// <summary>
+        /// Verify a get request can be made
+        /// </summary>
         [Fact]
-        public void MakeGetRequest()
+        public async void MakeGetRequest()
         {
-            var _mockClient = new Mock<HttpClient>();
-            _mockClient.Setup(e => e.GetAsync(It.IsAny<string>()));
-            var _dut = new HttpClientService(_mockClient.Object);
+            var _mockResponses = new Dictionary<Uri, HttpResponseMessage>();
+            var _mockHandler = new MockResponseHandler(_mockResponses);
+            var _mockClient = new HttpClient(_mockHandler);
+            var _dut = new HttpClientService(_mockClient);
 
-            _mockClient.Verify(e => e.GetAsync(It.IsAny<string>()), Times.Exactly(1));
+            _mockResponses.Add(new Uri("http://www.uri.com"), new HttpResponseMessage(HttpStatusCode.OK));
+
+            var response = await _dut.RequestAsync(new Uri("http://www.uri.com"));
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }

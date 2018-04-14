@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace MarbleMotionBackEnd.Services
 {
@@ -17,6 +19,11 @@ namespace MarbleMotionBackEnd.Services
         public HttpClientService(HttpClient client)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
+
+            _client.BaseAddress = new Uri("https://localhost:44340/api");
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/ion+json"));
         }
 
         /// <summary>
@@ -24,9 +31,9 @@ namespace MarbleMotionBackEnd.Services
         /// </summary>
         /// <param name="request">The Uri to request</param>
         /// <returns></returns>
-        public HttpResponseMessage Request(Uri request)
+        public async Task<HttpResponseMessage> RequestAsync(Uri request)
         {
-            throw new NotImplementedException();
+            return await _client.GetAsync(request);
         }
     }
 }

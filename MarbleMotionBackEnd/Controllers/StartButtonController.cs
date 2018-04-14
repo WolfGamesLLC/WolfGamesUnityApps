@@ -30,11 +30,6 @@ namespace MarbleMotionBackEnd.Controllers
             _player = player ?? throw new ArgumentNullException(nameof(player));
 
             _view.OnClicked += HandleOnClickedEvent;
-
-            client.BaseAddress = new Uri("https://localhost:44340/api");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/ion+json"));
         }
 
         /// <summary>

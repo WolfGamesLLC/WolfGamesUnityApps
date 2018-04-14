@@ -1,6 +1,7 @@
 ﻿using MarbleMotionBackEnd.Services;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using Xunit;
@@ -16,10 +17,12 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         /// Verify that an Http get request can be made
         /// </summary>
         [Fact]
-        public void MakeHttpGetRequest()
+        public async void MakeHttpGetRequest()
         {
             HttpClientService _dut = new HttpClientService(new HttpClient());
-            HttpResponseMessage response = _dut.Request(new Uri("http://www.wolfgamesllc.com"));
+            var response = await _dut.RequestAsync(new Uri("http://www.wolfgamesllc.com"));
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }
