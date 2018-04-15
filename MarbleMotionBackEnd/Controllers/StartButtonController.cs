@@ -41,11 +41,11 @@ namespace MarbleMotionBackEnd.Controllers
         {
             _player.Id = "1";
 
-            HttpResponseMessage response = await client.GetAsync("https://localhost:44340/api/players");
-            if (response.IsSuccessStatusCode)
-            {
-                _player.Id = await response.Content.ReadAsStringAsync();
-            }
+//            HttpResponseMessage response = await client.GetAsync("https://localhost:44340/api/players");
+//            if (response.IsSuccessStatusCode)
+//            {
+//                _player.Id = await response.Content.ReadAsStringAsync();
+//            }
         }
     }
 }

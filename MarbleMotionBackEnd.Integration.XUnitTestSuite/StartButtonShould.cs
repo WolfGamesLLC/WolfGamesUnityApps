@@ -4,6 +4,7 @@ using MarbleMotionBackEnd.Controllers;
 using Moq;
 using MarbleMotionBackEnd.Interfaces;
 using MarbleMotionBackEnd.EventArgs;
+using MarbleMotionBackEnd.Models;
 
 namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
 {
@@ -12,31 +13,32 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
     /// </summary>
     public class StartButtonShould
     {
-        private Mock<IStartButtonModel> _mockModel;
+        private StartButtonModel _startButton;
         private StartButtonController _dut;
-        private Mock<IStartButtonView> _mockView;
-        private Mock<IPlayerModel> _mockPlayer;
+        private StartButtonView _view;
+        private PlayerModel _player;
 
         /// <summary>
         /// Initialize the test suite
         /// </summary>
         public StartButtonShould()
         {
-            _mockModel = new Mock<IStartButtonModel>();
-            _mockView = new Mock<IStartButtonView>();
-            _mockPlayer = new Mock<IPlayerModel>();
-            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer.Object);
+            _startButton = new StartButtonModel();
+            _view = new StartButtonView();
+            _player = new PlayerModel();
+            _dut = new StartButtonController(_startButton, _view, _player);
         }
 
         /// <summary>
-        /// Verify that a click on the <see cref="StartButtonView"/> fires the <see cref="StartButtonController"/>
+        /// Verify that a click on the <see cref="StartButtonView"/> loads the current user's player data
         /// </summary>
-        [Fact]
-        public void RaiseOnClickedEvent()
+        [Fact(Skip = "This is a more difficult test. Working on getting simpler ones working first")]
+        public void LoadsPlayerDataAndDisableMenuOnClick()
         {
-            var dut = new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer.Object);
+            var dut = new StartButtonController(_startButton, _view, _player);
             object[] parms = { this, new StartButtonClickedEventArgs() };
-            Assert.Throws<NotImplementedException>(() => _mockView.Raise(e => e.OnClicked += null, parms));
+
+            throw new NotImplementedException("This is a more difficult test. Working on getting simpler ones working first");
         }
     }
 }

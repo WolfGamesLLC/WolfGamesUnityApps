@@ -78,9 +78,7 @@ namespace MarbleMotionXUnitTest
         [Fact]
         public void LoadPlayerDataOnClickedEventAsync()
         {
-            _mockPlayer.SetupProperty(player => player.Id);
-            _dut.HandleOnClickedEvent(this, new StartButtonClickedEventArgs());
-            Assert.Equal("1", _mockPlayer.Object.Id);
+            _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs());
             _mockPlayer.VerifySet(player => player.Id = "1");
         }
     }
