@@ -20,7 +20,6 @@ namespace MarbleMotionBackEnd.Services
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
 
-            _client.BaseAddress = new Uri("https://localhost:44340/api");
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/ion+json"));

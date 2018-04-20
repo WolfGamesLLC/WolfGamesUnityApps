@@ -16,6 +16,15 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         private const string WGProdUri = "http://www.wolfgamesllc.com";
         private const string MMDevApiUri = "https://marblemotiondev.wolfgamesllc.com";
         private const string MMLocalApiUri = "https://localhost:44340/api";
+        private const string LocalPlayerDataUri = "https://localhost:44340/api/players";
+
+        private HttpClient _client;
+
+        public HttpClientServiceShould()
+        {
+            _client = new HttpClient();
+            _client.BaseAddress = new Uri("https://www.wolfgamesllc.com/simplegames/webgl/marblemotion");
+        }
 
         /// <summary>
         /// Verify that an Http get request can be made
@@ -44,11 +53,26 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         /// <summary>
         /// Verify that an Http get request can be made to the local game API
         /// </summary>
-        [Fact]
+        [Fact(Skip = "Until I start the localhost")]
         public async void MakeLocalApiHttpGetRequest()
         {
-            HttpClientService _dut = new HttpClientService(new HttpClient());
+            var _client = new HttpClient();
+            _client.BaseAddress = new Uri("https://localhost:44340/api");
+
+            HttpClientService _dut = new HttpClientService(_client);
             var response = await _dut.RequestAsync(new Uri(MMLocalApiUri));
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        /// <summary>
+        /// Verify that player data request can be made to the local game API
+        /// </summary>
+        [Fact(Skip = "Until I figure out how to send the JWT with the request.")]
+        public async void MakeLocalPlayerDataRequest()
+        {
+            HttpClientService _dut = new HttpClientService(new HttpClient());
+            var response = await _dut.RequestAsync(new Uri(LocalPlayerDataUri));
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
