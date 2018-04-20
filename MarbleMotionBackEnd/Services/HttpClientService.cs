@@ -8,7 +8,7 @@ namespace MarbleMotionBackEnd.Services
     /// <summary>
     /// Service that allows HttpClient requests
     /// </summary>
-    public class HttpClientService
+    public class HttpClientService : IHttpClientService
     {
         private HttpClient _client;
 
