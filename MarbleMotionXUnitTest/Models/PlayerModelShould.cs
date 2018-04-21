@@ -36,9 +36,42 @@ namespace MarbleMotionXUnitTest.Models
         [Fact]
         public void ShouldSetAndGetId()
         {
-            string expected = "Hello World";
+            Guid expected = new Guid();
             _player.Id = expected;
             Assert.Equal(expected, _player.Id);
+        }
+
+        /// <summary>
+        /// The score should be set and retrieved
+        /// </summary>
+        [Fact]
+        public void ShouldSetAndGetScore()
+        {
+            long expected = 12345;
+            _player.Score = expected;
+            Assert.Equal(expected, _player.Score);
+        }
+
+        /// <summary>
+        /// The X position should be set and retrieved
+        /// </summary>
+        [Fact]
+        public void ShouldSetAndGetXPosition()
+        {
+            int expected = 12345;
+            _player.XPosition = expected;
+            Assert.Equal(expected, _player.XPosition);
+        }
+
+        /// <summary>
+        /// The Y position should be set and retrieved
+        /// </summary>
+        [Fact]
+        public void ShouldSetAndGetYPosition()
+        {
+            int expected = 12345;
+            _player.ZPosition = expected;
+            Assert.Equal(expected, _player.ZPosition);
         }
     }
 }

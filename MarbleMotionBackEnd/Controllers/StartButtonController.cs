@@ -43,7 +43,8 @@ namespace MarbleMotionBackEnd.Controllers
             HttpResponseMessage response = await _httpClientService.RequestAsync(new Uri("https://localhost:44340/api/players"));
             if (response.IsSuccessStatusCode)
             {
-                _player.Id = await response.Content.ReadAsStringAsync();
+                var responseText = await response.Content.ReadAsStringAsync();
+                _player.Id = new Guid(responseText);
             }
         }
     }

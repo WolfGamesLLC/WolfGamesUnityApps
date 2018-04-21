@@ -110,7 +110,7 @@ namespace MarbleMotionXUnitTest.Controllers
 
             _mockResponses.Add(new Uri("https://localhost:44340/api/players"), expectedHttpResponseMessage);
             _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs());
-            _mockPlayer.VerifySet(player => player.Id = "1");
+            _mockPlayer.VerifySet(player => player.Id = new Guid("1"));
         }
     }
 }

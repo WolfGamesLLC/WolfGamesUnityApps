@@ -1,4 +1,5 @@
 ﻿using MarbleMotionBackEnd.Interfaces;
+using System;
 
 namespace MarbleMotionBackEnd.Models
 {
@@ -8,15 +9,23 @@ namespace MarbleMotionBackEnd.Models
     public class PlayerModel : IPlayerModel
     {
         /// <summary>
-        /// default constructor
-        /// </summary>
-        public PlayerModel()
-        {
-        }
-
-        /// <summary>
         /// Database generated record key for this table
         /// </summary>
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The player's score
+        /// </summary>
+        public long Score { get; set; }
+
+        /// <summary>
+        /// The payer's character X position
+        /// </summary>
+        public int XPosition { get; set; }
+
+        /// <summary>
+        /// The payer's character Z position
+        /// </summary>
+        public int ZPosition { get; set; }
     }
 }
