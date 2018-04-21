@@ -42,5 +42,22 @@ namespace MarbleMotionXUnitTest.Services
             var response = await _dut.RequestAsync(new Uri("http://www.uri.com"));
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
+
+        /// <summary>
+        /// Verify a load player data
+        /// </summary>
+        [Fact]
+        public async void LoadPlayerData()
+        {
+            var _mockResponses = new Dictionary<Uri, HttpResponseMessage>();
+            var _mockHandler = new MockResponseHandler(_mockResponses);
+            var _mockClient = new HttpClient(_mockHandler);
+            var _dut = new HttpClientService(_mockClient);
+
+            _mockResponses.Add(new Uri("http://www.uri.com"), new HttpResponseMessage(HttpStatusCode.OK));
+
+            var response = await _dut.RequestAsync(new Uri("http://www.uri.com"));
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }

@@ -27,5 +27,26 @@ namespace MarbleMotionBackEnd.Models
         /// The payer's character Z position
         /// </summary>
         public int ZPosition { get; set; }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            PlayerModel other = obj as PlayerModel;
+
+            return other.Id == this.Id;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            // TODO: write your implementation of GetHashCode() here
+            throw new NotImplementedException();
+            return base.GetHashCode();
+        }
     }
 }
