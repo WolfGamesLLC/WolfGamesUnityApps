@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using MarbleMotionBackEnd.Factories;
 using MarbleMotionBackEnd.Models;
+using MarbleMotionBackEnd.Services;
+using System.Net.Http;
 
 public class GameController : MonoBehaviour
 {
@@ -21,7 +23,8 @@ public class GameController : MonoBehaviour
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
         StartButtonControllerFactory startButtonControllerFactory = new StartButtonControllerFactory(startButtonModelFactory.Model, 
                                                                                                     startButtonViewFactory.View,
-                                                                                                    new PlayerModel());
+                                                                                                    new PlayerModel(), 
+                                                                                                    new HttpClientService(new HttpClient()));
     }
 
     // Use this for initialization

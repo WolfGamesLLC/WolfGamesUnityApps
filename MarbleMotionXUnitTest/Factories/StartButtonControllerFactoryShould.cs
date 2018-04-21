@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using Moq;
+using MarbleMotionBackEnd.Models;
+using MarbleMotionBackEnd.Services;
 
 namespace MarbleMotionXUnitTest.Factories
 {
@@ -20,7 +22,7 @@ namespace MarbleMotionXUnitTest.Factories
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullStartButtonModel()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerFactory(null, null, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerFactory(null, null, null, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: model", ex.Message);
         }
 
@@ -31,7 +33,7 @@ namespace MarbleMotionXUnitTest.Factories
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullStartButtonView()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerFactory(new Mock<IStartButtonModel>().Object, null, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerFactory(new Mock<IStartButtonModel>().Object, null, null, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: view", ex.Message);
         }
 
@@ -43,8 +45,21 @@ namespace MarbleMotionXUnitTest.Factories
         public void ThrowArgumentNullExceptionFromConstructorWithNullPlayerModel()
         {
             var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerFactory(new Mock<IStartButtonModel>().Object, 
-                                                                                                new Mock<IStartButtonView>().Object, null));
+                                                                                                new Mock<IStartButtonView>().Object, null, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: player", ex.Message);
+        }
+
+        /// <summary>
+        /// Verify a <see cref="StartButtonControllerFactory"/> throws an 
+        /// <see cref="ArgumentNullException"/> unless a valid <see cref="HttpClientService"/> is used
+        /// </summary>
+        [Fact]
+        public void ThrowArgumentNullExceptionFromConstructorWithNullHttpClientService()
+        {
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerFactory(new Mock<IStartButtonModel>().Object,
+                                                                                                new Mock<IStartButtonView>().Object,
+                                                                                                new Mock<IPlayerModel>().Object, null));
+            Assert.Equal("Value cannot be null.\r\nParameter name: httpClientService", ex.Message);
         }
 
         /// <summary>
@@ -56,7 +71,8 @@ namespace MarbleMotionXUnitTest.Factories
         {
             IStartButtonControllerFactory factory = new StartButtonControllerFactory(new Mock<IStartButtonModel>().Object, 
                                                                                     new Mock<IStartButtonView>().Object, 
-                                                                                    new Mock<IPlayerModel>().Object);
+                                                                                    new Mock<IPlayerModel>().Object,
+                                                                                    new Mock<IHttpClientService>().Object);
             Assert.IsAssignableFrom<IStartButtonController>(factory.Controller);
         }
     }

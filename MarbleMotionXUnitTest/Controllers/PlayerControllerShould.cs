@@ -2,7 +2,7 @@ using MarbleMotionBackEnd.Controllers;
 using System;
 using Xunit;
 
-namespace MarbleMotionXUnitTest
+namespace MarbleMotionXUnitTest.Controllers
 {
     /// <summary>
     /// Test suite for the PlayerController

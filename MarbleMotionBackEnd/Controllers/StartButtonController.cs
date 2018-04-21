@@ -12,10 +12,10 @@ namespace MarbleMotionBackEnd.Controllers
     /// </summary>
     public class StartButtonController : IStartButtonController
     {
-        static HttpClient client = new HttpClient();
         private readonly IStartButtonModel _model;
         private readonly IStartButtonView _view;
         private readonly IPlayerModel _player;
+        private readonly IHttpClientService _httpClientService;
 
         /// <summary>
         /// Initialize a <see cref="StartButtonController"/> object
@@ -23,11 +23,12 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="model">an instance of an object that implements <see cref="IStartButtonModel"/></param>
         /// <param name="view">an instance of an object that implements <see cref="IStartButtonView"/></param>
         /// <param name="player">an instance of an object that implements <see cref="IPlayerModel"/></param>
-        public StartButtonController(IStartButtonModel model, IStartButtonView view, IPlayerModel player)
+        public StartButtonController(IStartButtonModel model, IStartButtonView view, IPlayerModel player, IHttpClientService httpClientService)
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
             _view = view ?? throw new ArgumentNullException(nameof(view));
             _player = player ?? throw new ArgumentNullException(nameof(player));
+            _httpClientService = httpClientService ?? throw new ArgumentNullException(nameof(httpClientService));
 
             _view.OnClicked += HandleOnClickedEvent;
         }
@@ -39,13 +40,11 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
         public async void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            _player.Id = "1";
-
-//            HttpResponseMessage response = await client.GetAsync("https://localhost:44340/api/players");
-//            if (response.IsSuccessStatusCode)
-//            {
-//                _player.Id = await response.Content.ReadAsStringAsync();
-//            }
+            HttpResponseMessage response = await _httpClientService.RequestAsync(new Uri("https://localhost:44340/api/players"));
+            if (response.IsSuccessStatusCode)
+            {
+                _player.Id = await response.Content.ReadAsStringAsync();
+            }
         }
     }
 }
