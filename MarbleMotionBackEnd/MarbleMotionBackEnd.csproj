@@ -8,4 +8,8 @@
     <Exec Command="copy &quot;$(TargetPath)&quot; &quot;$(SolutionDir)Assets\Plugins&quot;" />
   </Target>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
 </Project>
