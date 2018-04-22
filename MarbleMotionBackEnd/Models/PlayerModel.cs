@@ -38,7 +38,7 @@ namespace MarbleMotionBackEnd.Models
 
             PlayerModel other = obj as PlayerModel;
 
-            return other.Id == this.Id;
+            return other.Id == this.Id && other.Score == this.Score && other.XPosition == this.XPosition && other.ZPosition == this.ZPosition;
         }
 
         // override object.GetHashCode

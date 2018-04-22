@@ -120,5 +120,83 @@ namespace MarbleMotionXUnitTest.Models
 
             Assert.Equal(_expectedPlayer, _player);
         }
+
+        /// <summary>
+        /// Verify that two player objects with different scores return not equal
+        /// </summary>
+        [Fact]
+        public void ReturnNotEqualWithNotEqualScore()
+        {
+            _expectedPlayer.Score = 1;
+
+            _player.Score = 2;
+
+            Assert.NotEqual(_expectedPlayer, _player);
+        }
+
+        /// <summary>
+        /// Verify that two player objects with equal scores return equal
+        /// </summary>
+        [Fact]
+        public void ReturnEqualWithEqualScore()
+        {
+            _expectedPlayer.Score = 1;
+
+            _player.Score = _expectedPlayer.Score;
+
+            Assert.Equal(_expectedPlayer, _player);
+        }
+
+        /// <summary>
+        /// Verify that two player objects with different x positions return not equal
+        /// </summary>
+        [Fact]
+        public void ReturnNotEqualWithNotEqualXPosition()
+        {
+            _expectedPlayer.XPosition = 1;
+
+            _player.XPosition = 2;
+
+            Assert.NotEqual(_expectedPlayer, _player);
+        }
+
+        /// <summary>
+        /// Verify that two player objects with equal x positions return equal
+        /// </summary>
+        [Fact]
+        public void ReturnEqualWithEqualXPosition()
+        {
+            _expectedPlayer.XPosition = 1;
+
+            _player.XPosition = _expectedPlayer.XPosition;
+
+            Assert.Equal(_expectedPlayer, _player);
+        }
+
+        /// <summary>
+        /// Verify that two player objects with different x positions return not equal
+        /// </summary>
+        [Fact]
+        public void ReturnNotEqualWithNotEqualZPosition()
+        {
+            _expectedPlayer.ZPosition = 1;
+
+            _player.ZPosition = 2;
+
+            Assert.NotEqual(_expectedPlayer, _player);
+        }
+
+        /// <summary>
+        /// Verify that two player objects with equal x positions return equal
+        /// </summary>
+        [Fact]
+        public void ReturnEqualWithEqualZPosition()
+        {
+            _expectedPlayer.ZPosition = 1;
+
+            _player.ZPosition = _expectedPlayer.ZPosition;
+
+            Assert.Equal(_expectedPlayer, _player);
+        }
     }
 }
