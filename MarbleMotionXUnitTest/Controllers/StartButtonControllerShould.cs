@@ -27,9 +27,10 @@ namespace MarbleMotionXUnitTest.Controllers
         private Mock<IStartButtonModel> _mockModel;
         private StartButtonController _dut;
         private Mock<IStartButtonView> _mockView;
-        private PlayerModel _mockPlayer;
+        private PlayerModel _player;
         private Mock<IHttpClientService> _mockHttpClientService;
         private Dictionary<Uri, HttpResponseMessage> _mockResponses = new Dictionary<Uri, HttpResponseMessage>();
+        private Guid _guid;
 
         /// <summary>
         /// Initialize the test suite
@@ -39,13 +40,15 @@ namespace MarbleMotionXUnitTest.Controllers
         {
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
-            _mockPlayer = new PlayerModel();
             _mockHttpClientService = new Mock<IHttpClientService>();
             var _mockHandler = new MockResponseHandler(_mockResponses);
             var _mockClient = new HttpClient(_mockHandler);
             var mockHttpClientService = new HttpClientService(_mockClient);
 
-            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer, mockHttpClientService);
+            _guid = Guid.NewGuid();
+            _player = new PlayerModel();
+            _player.Id = _guid;
+            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, mockHttpClientService);
         }
 
         /// <summary>
@@ -84,7 +87,7 @@ namespace MarbleMotionXUnitTest.Controllers
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullHttpClientService()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(_mockModel.Object, _mockView.Object, _player, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: httpClientService", ex.Message);
         }
 
@@ -95,7 +98,7 @@ namespace MarbleMotionXUnitTest.Controllers
         [Fact]
         public void CreateStartButtonController()
         {
-            Assert.NotNull(new StartButtonController(_mockModel.Object, _mockView.Object, _mockPlayer, _mockHttpClientService.Object));
+            Assert.NotNull(new StartButtonController(_mockModel.Object, _mockView.Object, _player, _mockHttpClientService.Object));
         }
 
         /// <summary>
@@ -105,20 +108,20 @@ namespace MarbleMotionXUnitTest.Controllers
         public void LoadPlayerDataOnClickedEventAsync()
         {
             var expectedPlayer = new PlayerModel();
-            expectedPlayer.Id = new Guid("a4939295-ebc1-4f9e-ae00-08d55132a4f1");
+            expectedPlayer.Id = _guid;
             expectedPlayer.Score = 1;
             expectedPlayer.XPosition = 20;
             expectedPlayer.ZPosition = 300;
 
-            byte[] content = Encoding.Default.GetBytes("{\"href\": \"https://localhost:44340/api/players/a4939295-ebc1-4f9e-ae00-08d55132a4f1\",\"score\": 1,\"xPosition\": 20,\"zPosition\": 300}");
+            byte[] content = Encoding.Default.GetBytes("{\"href\": " + $"\"https://localhost:44340/api/players/{_guid}\"" + ",\"score\": 1,\"xPosition\": 20,\"zPosition\": 300}");
             var contentStream = new MemoryStream(content);
             var expectedHttpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
             expectedHttpResponseMessage.Content = new StreamContent(contentStream);
 
-            _mockResponses.Add(new Uri("https://localhost:44340/api/players"), expectedHttpResponseMessage);
+            _mockResponses.Add(new Uri($"https://localhost:44340/api/players/{_guid}"), expectedHttpResponseMessage);
             _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs());
 
-            Assert.Equal(expectedPlayer, _mockPlayer);
+            Assert.Equal(expectedPlayer, _player);
         }
     }
 }

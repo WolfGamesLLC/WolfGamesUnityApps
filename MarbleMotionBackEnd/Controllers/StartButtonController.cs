@@ -1,5 +1,7 @@
 ﻿using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
+using MarbleMotionBackEnd.Models;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -40,11 +42,14 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
         public async void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            HttpResponseMessage response = await _httpClientService.RequestAsync(new Uri("https://localhost:44340/api/players"));
+            HttpResponseMessage response = await _httpClientService.RequestAsync(new Uri($"https://localhost:44340/api/players/{_player.Id}"));
             if (response.IsSuccessStatusCode)
             {
                 var responseText = await response.Content.ReadAsStringAsync();
-                _player.Id = new Guid(responseText);
+                var playerResource = JsonConvert.DeserializeObject<PlayerModelResource>(responseText);
+                _player.Score = playerResource.Score;
+                _player.XPosition = playerResource.XPosition;
+                _player.ZPosition = playerResource.ZPosition;
             }
         }
     }
