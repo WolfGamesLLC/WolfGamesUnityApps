@@ -198,5 +198,18 @@ namespace MarbleMotionXUnitTest.Models
 
             Assert.Equal(_expectedPlayer, _player);
         }
+
+        /// <summary>
+        /// Verify that two player objects with equal ids return the same hash code
+        /// </summary>
+        [Fact]
+        public void ReturnEqualHashWithEqualId()
+        {
+            _expectedPlayer.Id = Guid.NewGuid();
+
+            _player.Id = _expectedPlayer.Id;
+
+            Assert.Equal(_expectedPlayer.GetHashCode(), _player.GetHashCode());
+        }
     }
 }
