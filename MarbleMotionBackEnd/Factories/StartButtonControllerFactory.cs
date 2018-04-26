@@ -7,7 +7,7 @@ namespace MarbleMotionBackEnd.Factories
     /// <summary>
     /// Factory for creating a StartButtonController
     /// </summary>
-    public class StartButtonControllerFactory : IStartButtonControllerFactory
+    public class StartButtonControllerFactory : IStartButtonControllerBuilder
     {
         public IStartButtonController Controller { get; private set; }
 

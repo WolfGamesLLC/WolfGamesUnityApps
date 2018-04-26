@@ -69,7 +69,7 @@ namespace MarbleMotionXUnitTest.Factories
         [Fact]
         public void CreateStartButtonController()
         {
-            IStartButtonControllerFactory factory = new StartButtonControllerFactory(new Mock<IStartButtonModel>().Object, 
+            IStartButtonControllerBuilder factory = new StartButtonControllerFactory(new Mock<IStartButtonModel>().Object, 
                                                                                     new Mock<IStartButtonView>().Object, 
                                                                                     new Mock<IPlayerModel>().Object,
                                                                                     new Mock<IHttpClientService>().Object);
