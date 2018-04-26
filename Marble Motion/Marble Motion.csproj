@@ -248,6 +248,9 @@
     <Reference Include="MarbleMotionBackEnd">
       <HintPath>Assets/Plugins/MarbleMotionBackEnd.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>Assets/Plugins/System.Net.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime">
       <HintPath>Assets/Plugins/System.Runtime.dll</HintPath>
     </Reference>
@@ -262,9 +265,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>Assets/Plugins/System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

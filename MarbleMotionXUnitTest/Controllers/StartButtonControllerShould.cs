@@ -4,6 +4,7 @@ using MarbleMotionBackEnd.Interfaces;
 using MarbleMotionBackEnd.Models;
 using MarbleMotionBackEnd.Services;
 using MarbleMotionXUnitTest.TestingUtilities;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using Newtonsoft.Json;
 using System;
@@ -92,13 +93,24 @@ namespace MarbleMotionXUnitTest.Controllers
         }
 
         /// <summary>
-        /// Create a <see cref="StartButtonController"/> when a <see cref="StartButtonView"/> and a <see cref="StartButtonModel"/> are 
-        /// injected
+        /// Create a <see cref="StartButtonController"/> when all required objects are supplied
         /// </summary>
         [Fact]
         public void CreateStartButtonController()
         {
             Assert.NotNull(new StartButtonController(_mockModel.Object, _mockView.Object, _player, _mockHttpClientService.Object));
+        }
+
+        /// <summary>
+        /// Set a <see cref="StartButtonController"/> objects configuration 
+        /// </summary>
+        [Fact]
+        public void SetStartButtonControllerConfiguration()
+        {
+            var mockConfig = new Mock<IConfiguration>();
+            _dut.Configuration = mockConfig.Object;
+
+            Assert.NotNull(_dut.Configuration);
         }
 
         /// <summary>

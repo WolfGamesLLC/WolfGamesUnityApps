@@ -1,6 +1,7 @@
 ﻿using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
 using MarbleMotionBackEnd.Models;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -18,6 +19,12 @@ namespace MarbleMotionBackEnd.Controllers
         private readonly IStartButtonView _view;
         private readonly IPlayerModel _player;
         private readonly IHttpClientService _httpClientService;
+
+        /// <summary>
+        /// The object that implements <see cref="IConfiguration"/> that contains the
+        /// configuration information for the <see cref="StartButtonController"/>
+        /// </summary>
+        public IConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Initialize a <see cref="StartButtonController"/> object
