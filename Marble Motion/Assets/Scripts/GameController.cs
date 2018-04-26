@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     {
         StartButtonViewFactory startButtonViewFactory = new StartButtonViewFactory();
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
-        StartButtonControllerFactory startButtonControllerFactory = new StartButtonControllerFactory(startButtonModelFactory.Model, 
+        StartButtonControllerBuilder startButtonControllerFactory = new StartButtonControllerBuilder(startButtonModelFactory.Model, 
                                                                                                     startButtonViewFactory.View,
                                                                                                     new PlayerModel(), 
                                                                                                     new HttpClientService(new HttpClient()));
