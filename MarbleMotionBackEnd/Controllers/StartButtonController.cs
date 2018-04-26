@@ -49,7 +49,8 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
         public async void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            HttpResponseMessage response = await _httpClientService.RequestAsync(new Uri($"https://localhost:44340/api/players/{_player.Id}"));
+            var uri = new Uri(Configuration.GetValue<string>("StartButtonController:PlayerUri"));
+            HttpResponseMessage response = await _httpClientService.RequestAsync(new Uri($"{uri}{_player.Id}"));
             if (response.IsSuccessStatusCode)
             {
                 var responseText = await response.Content.ReadAsStringAsync();

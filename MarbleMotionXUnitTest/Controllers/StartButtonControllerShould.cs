@@ -32,6 +32,7 @@ namespace MarbleMotionXUnitTest.Controllers
         private Mock<IHttpClientService> _mockHttpClientService;
         private Dictionary<Uri, HttpResponseMessage> _mockResponses = new Dictionary<Uri, HttpResponseMessage>();
         private Guid _guid;
+        private IConfigurationRoot _configuration;
 
         /// <summary>
         /// Initialize the test suite
@@ -50,6 +51,15 @@ namespace MarbleMotionXUnitTest.Controllers
             _player = new PlayerModel();
             _player.Id = _guid;
             _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, mockHttpClientService);
+
+            var dict = new Dictionary<string, string>
+            {
+                { "StartButtonController:PlayerUri", $"https://localhost:44340/api/players/" }
+            };
+            _configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(dict)
+                .Build();
+            _dut.Configuration = _configuration;
         }
 
         /// <summary>
