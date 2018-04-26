@@ -13,7 +13,7 @@ namespace MarbleMotionXUnitTest.Factories
     /// <summary>
     /// Test suite for the StartButtonModelFactory
     /// </summary>
-    public class StartButtonControllerFactoryShould
+    public class StartButtonControllerBuilderShould
     {
         /// <summary>
         /// Verify a <see cref="StartButtonControllerFactory"/> throws an 
