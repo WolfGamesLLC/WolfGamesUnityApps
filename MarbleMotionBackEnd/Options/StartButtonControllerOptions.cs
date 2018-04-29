@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MarbleMotionBackEnd.Options
 {
@@ -10,13 +11,13 @@ namespace MarbleMotionBackEnd.Options
         /// <summary>
         /// The default Uri used by the <see cref="StartButtonController"/> 
         /// </summary>
-        public static readonly string DefaultUri = "https://localhost:44340/api/players/";
+        public static readonly Uri DefaultUri = new Uri("https://localhost:44340/api/players/");
 
         public StartButtonControllerOptions()
         {
             Uri = DefaultUri;
         }
 
-        public string Uri { get; set; }
+        public Uri Uri { get; set; }
     }
 }

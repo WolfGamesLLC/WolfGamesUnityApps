@@ -1,6 +1,7 @@
 ﻿using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
 using MarbleMotionBackEnd.Models;
+using MarbleMotionBackEnd.Options;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
@@ -24,7 +25,7 @@ namespace MarbleMotionBackEnd.Controllers
         /// The object that implements <see cref="IConfiguration"/> that contains the
         /// configuration information for the <see cref="StartButtonController"/>
         /// </summary>
-        public IConfiguration Configuration { get; set; }
+        public StartButtonControllerOptions Options { get; set; }
 
         /// <summary>
         /// Initialize a <see cref="StartButtonController"/> object
@@ -49,8 +50,8 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
         public async void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            var uri = new Uri(Configuration.GetValue<string>("StartButtonController:PlayerUri"));
-            HttpResponseMessage response = await _httpClientService.RequestAsync(new Uri($"{uri}{_player.Id}"));
+            Uri uri = new Uri(Options.Uri + _player.Id.ToString());
+            HttpResponseMessage response = await _httpClientService.RequestAsync(uri);
             if (response.IsSuccessStatusCode)
             {
                 var responseText = await response.Content.ReadAsStringAsync();

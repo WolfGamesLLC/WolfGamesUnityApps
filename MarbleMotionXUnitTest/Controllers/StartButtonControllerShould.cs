@@ -2,6 +2,7 @@ using MarbleMotionBackEnd.Controllers;
 using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
 using MarbleMotionBackEnd.Models;
+using MarbleMotionBackEnd.Options;
 using MarbleMotionBackEnd.Services;
 using MarbleMotionXUnitTest.TestingUtilities;
 using Microsoft.Extensions.Configuration;
@@ -51,15 +52,7 @@ namespace MarbleMotionXUnitTest.Controllers
             _player = new PlayerModel();
             _player.Id = _guid;
             _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, mockHttpClientService);
-
-            var dict = new Dictionary<string, string>
-            {
-                { "StartButtonController:PlayerUri", $"https://localhost:44340/api/players/" }
-            };
-            _configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(dict)
-                .Build();
-            _dut.Configuration = _configuration;
+            _dut.Options = new StartButtonControllerOptions();
         }
 
         /// <summary>
@@ -115,12 +108,12 @@ namespace MarbleMotionXUnitTest.Controllers
         /// Set a <see cref="StartButtonController"/> objects configuration 
         /// </summary>
         [Fact]
-        public void SetStartButtonControllerConfiguration()
+        public void SetStartButtonControllerOptions()
         {
-            var mockConfig = new Mock<IConfiguration>();
-            _dut.Configuration = mockConfig.Object;
+            var mockConfig = new Mock<StartButtonControllerOptions>();
+            _dut.Options = mockConfig.Object;
 
-            Assert.NotNull(_dut.Configuration);
+            Assert.NotNull(_dut.Options);
         }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace MarbleMotionXUnitTest.Options
         [Fact]
         public void GetAndSetUri()
         {
-            var uri = "www.someuri.com";
+            var uri = new Uri("http://www.someuri.com");
             var _dut = new StartButtonControllerOptions();
 
             _dut.Uri = uri;
