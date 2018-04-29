@@ -5,5 +5,9 @@
     /// </summary>
     public interface IStartButtonController
     {
+        /// <summary>
+        /// Configurations options for the controller
+        /// </summary>
+        IStartButtonControllerOptions Options { get; set; }
     }
 }

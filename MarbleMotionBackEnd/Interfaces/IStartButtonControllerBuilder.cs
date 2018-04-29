@@ -1,4 +1,6 @@
-﻿namespace MarbleMotionBackEnd.Interfaces
+﻿using MarbleMotionBackEnd.Controllers;
+
+namespace MarbleMotionBackEnd.Interfaces
 {
     /// <summary>
     /// Interface for a <see cref="IStartButtonControllerBuilder"/>
@@ -6,8 +8,16 @@
     public interface IStartButtonControllerBuilder
     {
         /// <summary>
-        /// Return an object that implements <see cref="IStartButtonController"/>
+        /// Build a new <see cref="IStartButtonController"/>
         /// </summary>
-        IStartButtonController Controller { get; }
+        /// <returns>the controller</returns>
+        IStartButtonController Build();
+
+        /// <summary>
+        /// Allow a controller to be built with a set of configuration options
+        /// </summary>
+        /// <param name="options">The options to be used when building the new controller</param>
+        /// <returns>A reference to this builder</returns>
+        IStartButtonControllerBuilder Configure(IStartButtonControllerOptions options);
     }
 }

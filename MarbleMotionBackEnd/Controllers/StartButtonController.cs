@@ -25,7 +25,7 @@ namespace MarbleMotionBackEnd.Controllers
         /// The object that implements <see cref="IConfiguration"/> that contains the
         /// configuration information for the <see cref="StartButtonController"/>
         /// </summary>
-        public StartButtonControllerOptions Options { get; set; }
+        public IStartButtonControllerOptions Options { get; set; }
 
         /// <summary>
         /// Initialize a <see cref="StartButtonController"/> object

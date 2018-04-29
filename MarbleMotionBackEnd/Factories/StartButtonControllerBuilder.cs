@@ -10,13 +10,11 @@ namespace MarbleMotionBackEnd.Factories
     /// </summary>
     public class StartButtonControllerBuilder : IStartButtonControllerBuilder
     {
-        private StartButtonControllerOptions options;
+        private IStartButtonControllerOptions options;
         private IStartButtonModel model;
         private IStartButtonView view;
         private IPlayerModel player;
         private IHttpClientService httpClientService;
-
-        public IStartButtonController Controller { get; private set; }
 
         /// <summary>
         /// Create a start button controller factory
@@ -27,8 +25,6 @@ namespace MarbleMotionBackEnd.Factories
             this.view = view ?? throw new ArgumentNullException(nameof(view));
             this.player = player ?? throw new ArgumentNullException(nameof(player));
             this.httpClientService = httpClientService ?? throw new ArgumentNullException(nameof(httpClientService));
-
-            Controller = new StartButtonController(model, view, player, httpClientService);
         }
 
         /// <summary>
@@ -36,7 +32,7 @@ namespace MarbleMotionBackEnd.Factories
         /// </summary>
         /// <param name="startButtonControllerOptions">The options to be used by future controllers</param>
         /// <returns>A reference to the current builder</returns>
-        public StartButtonControllerBuilder Configure(StartButtonControllerOptions startButtonControllerOptions)
+        public IStartButtonControllerBuilder Configure(IStartButtonControllerOptions startButtonControllerOptions)
         {
             options = startButtonControllerOptions;
             return this;
@@ -46,7 +42,7 @@ namespace MarbleMotionBackEnd.Factories
         /// Build a controller with the currently specified requirements 
         /// </summary>
         /// <returns>The newly constructed controller</returns>
-        public StartButtonController Build()
+        public IStartButtonController Build()
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (view == null) throw new ArgumentNullException(nameof(view));
