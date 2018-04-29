@@ -7,6 +7,8 @@ using Xunit;
 using Moq;
 using MarbleMotionBackEnd.Models;
 using MarbleMotionBackEnd.Services;
+using MarbleMotionBackEnd.Options;
+using MarbleMotionBackEnd.Controllers;
 
 namespace MarbleMotionXUnitTest.Factories
 {
@@ -69,11 +71,27 @@ namespace MarbleMotionXUnitTest.Factories
         [Fact]
         public void CreateStartButtonController()
         {
-            IStartButtonControllerBuilder factory = new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object, 
+            IStartButtonControllerBuilder builder = new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object, 
                                                                                     new Mock<IStartButtonView>().Object, 
                                                                                     new Mock<IPlayerModel>().Object,
                                                                                     new Mock<IHttpClientService>().Object);
-            Assert.IsAssignableFrom<IStartButtonController>(factory.Controller);
+            Assert.IsAssignableFrom<IStartButtonController>(builder.Controller);
+        }
+
+        /// <summary>
+        /// Verify that a <see cref="StartButtonControllerBuilder"/> can configure the <see cref="StartButtonController"/>
+        /// it creates
+        /// </summary>
+        [Fact]
+        public void ConfigureStartButton()
+        {
+            StartButtonController controller = new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object,
+                                                                                    new Mock<IStartButtonView>().Object,
+                                                                                    new Mock<IPlayerModel>().Object,
+                                                                                    new Mock<IHttpClientService>().Object)
+                                                                                    .Configure(new StartButtonControllerOptions())
+                                                                                    .Build();
+            Assert.NotNull(controller.Options);
         }
     }
 }
