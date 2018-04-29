@@ -33,7 +33,6 @@ namespace MarbleMotionXUnitTest.Controllers
         private Mock<IHttpClientService> _mockHttpClientService;
         private Dictionary<Uri, HttpResponseMessage> _mockResponses = new Dictionary<Uri, HttpResponseMessage>();
         private Guid _guid;
-        private IConfigurationRoot _configuration;
 
         /// <summary>
         /// Initialize the test suite
@@ -50,7 +49,6 @@ namespace MarbleMotionXUnitTest.Controllers
 
             _guid = Guid.NewGuid();
             _player = new PlayerModel();
-            _player.Id = _guid;
             _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, mockHttpClientService);
             _dut.Options = new StartButtonControllerOptions();
         }
@@ -128,12 +126,14 @@ namespace MarbleMotionXUnitTest.Controllers
             expectedPlayer.XPosition = 20;
             expectedPlayer.ZPosition = 300;
 
-            byte[] content = Encoding.Default.GetBytes("{\"href\": " + $"\"https://localhost:44340/api/players/{_guid}\"" + ",\"score\": 1,\"xPosition\": 20,\"zPosition\": 300}");
+            byte[] content = Encoding.Default.GetBytes("{\"href\": " + $"\"{StartButtonControllerOptions.DefaultUri}{_guid}\"" + ",\"score\": 1,\"xPosition\": 20,\"zPosition\": 300}");
             var contentStream = new MemoryStream(content);
             var expectedHttpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
             expectedHttpResponseMessage.Content = new StreamContent(contentStream);
 
-            _mockResponses.Add(new Uri($"https://localhost:44340/api/players/{_guid}"), expectedHttpResponseMessage);
+            _mockResponses.Add(new Uri($"{StartButtonControllerOptions.DefaultUri}{_guid}"), expectedHttpResponseMessage);
+            _player.Id = _guid;
+
             _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs());
 
             Assert.Equal(expectedPlayer, _player);

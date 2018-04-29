@@ -7,6 +7,9 @@ using MarbleMotionBackEnd.Factories;
 using MarbleMotionBackEnd.Models;
 using MarbleMotionBackEnd.Services;
 using System.Net.Http;
+using MarbleMotionBackEnd.Interfaces;
+using System;
+using MarbleMotionBackEnd.Options;
 
 public class GameController : MonoBehaviour
 {
@@ -21,10 +24,15 @@ public class GameController : MonoBehaviour
     {
         StartButtonViewFactory startButtonViewFactory = new StartButtonViewFactory();
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
-        StartButtonControllerBuilder startButtonControllerFactory = new StartButtonControllerBuilder(startButtonModelFactory.Model, 
+        StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model, 
                                                                                                     startButtonViewFactory.View,
                                                                                                     new PlayerModel(), 
                                                                                                     new HttpClientService(new HttpClient()));
+        IStartButtonControllerOptions options = new StartButtonControllerOptions();
+        if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players");
+        else if (Debug.developerConsoleVisible) options.Uri = new Uri("https://localhost:44340/api/players/");
+
+        startButtonControllerBuilder.Configure(options).Build();
     }
 
     // Use this for initialization

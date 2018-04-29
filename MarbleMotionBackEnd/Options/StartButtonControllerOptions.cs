@@ -12,13 +12,19 @@ namespace MarbleMotionBackEnd.Options
         /// <summary>
         /// The default Uri used by the <see cref="StartButtonController"/> 
         /// </summary>
-        public static readonly Uri DefaultUri = new Uri("https://localhost:44340/api/players/");
+        public static readonly Uri DefaultUri = new Uri("https://marbelmotion.wolfgamesllc.com/api/players");
 
+        /// <summary>
+        /// Initialize the options
+        /// </summary>
         public StartButtonControllerOptions()
         {
             Uri = DefaultUri;
         }
 
+        /// <summary>
+        /// Set the player data REST Api url
+        /// </summary>
         public Uri Uri { get; set; }
     }
 }
