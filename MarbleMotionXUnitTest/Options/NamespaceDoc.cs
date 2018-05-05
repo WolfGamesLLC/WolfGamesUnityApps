@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace MarbleMotionXUnitTest
+namespace MarbleMotionXUnitTest.Options
 {
     /// <summary>
-    /// The <see cref="MarbleMotionXUnitTest"/> namespace contains  
-    /// test classes used by the Marble Motion game
+    /// The <see cref="MarbleMotionXUnitTest.Options"/> namespace contains  
+    /// test classes used by the Marble Motion game object option classes
     /// </summary>
     [System.Runtime.CompilerServices.CompilerGenerated]
     public class NamespaceDoc

@@ -290,6 +290,7 @@
     <Compile Include="Assets\Scripts\MD5.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Services\NonAsyncHttpClient.cs" />
     <Compile Include="Assets\Scripts\Services\NonAsyncHttpClientService.cs" />
     <Compile Include="Assets\Scripts\SpeedBoostPickUp.cs" />
     <Compile Include="Assets\Scripts\Views\StartButtonView.cs" />
