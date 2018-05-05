@@ -74,7 +74,7 @@ namespace MarbleMotionXUnitTest.Factories
             IStartButtonController controller = new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object, 
                                                                                     new Mock<IStartButtonView>().Object, 
                                                                                     new Mock<IPlayerModel>().Object,
-                                                                                    new Mock<IHttpClientService>().Object)
+                                                                                    new Mock<INonAsyncHttpClientService>().Object)
                                                                                     .Build();
             Assert.NotNull(controller);
         }
@@ -89,7 +89,7 @@ namespace MarbleMotionXUnitTest.Factories
             IStartButtonController controller = new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object,
                                                                                     new Mock<IStartButtonView>().Object,
                                                                                     new Mock<IPlayerModel>().Object,
-                                                                                    new Mock<IHttpClientService>().Object)
+                                                                                    new Mock<INonAsyncHttpClientService>().Object)
                                                                                     .Configure(new StartButtonControllerOptions())
                                                                                     .Build();
             Assert.NotNull(controller.Options);

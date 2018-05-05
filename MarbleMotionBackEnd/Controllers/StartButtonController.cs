@@ -17,7 +17,7 @@ namespace MarbleMotionBackEnd.Controllers
         private readonly IStartButtonModel _model;
         private readonly IStartButtonView _view;
         private IPlayerModel _player;
-        private readonly IHttpClientService _httpClientService;
+        private readonly INonAsyncHttpClientService _httpClientService;
 
         /// <summary>
         /// The object that implements <see cref="IConfiguration"/> that contains the
@@ -31,7 +31,7 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="model">an instance of an object that implements <see cref="IStartButtonModel"/></param>
         /// <param name="view">an instance of an object that implements <see cref="IStartButtonView"/></param>
         /// <param name="player">an instance of an object that implements <see cref="IPlayerModel"/></param>
-        public StartButtonController(IStartButtonModel model, IStartButtonView view, IPlayerModel player, IHttpClientService httpClientService)
+        public StartButtonController(IStartButtonModel model, IStartButtonView view, IPlayerModel player, INonAsyncHttpClientService httpClientService)
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
             _view = view ?? throw new ArgumentNullException(nameof(view));

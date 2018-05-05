@@ -10,7 +10,7 @@ using MarbleMotionBackEnd.Services;
 /// <summary>
 /// Class that leverages Unity's <see cref="WWW"/> class to make http requests
 /// </summary>
-public class WWWHttpClientService : IHttpClientService
+public class NonAsyncHttpClientService : INonAsyncHttpClientService
 {
     /// <summary>
     /// Make a request using the supplied HttpClient

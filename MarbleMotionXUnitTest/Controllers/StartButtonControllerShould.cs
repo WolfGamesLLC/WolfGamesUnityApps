@@ -29,7 +29,7 @@ namespace MarbleMotionXUnitTest.Controllers
         private StartButtonController _dut;
         private Mock<IStartButtonView> _mockView;
         private PlayerModel _player;
-        private Mock<IHttpClientService> _mockHttpClientService;
+        private Mock<INonAsyncHttpClientService> _mockHttpClientService;
         private Dictionary<Uri, HttpResponseMessage> _mockResponses = new Dictionary<Uri, HttpResponseMessage>();
         private Guid _guid;
 
@@ -41,8 +41,8 @@ namespace MarbleMotionXUnitTest.Controllers
         {
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
-            _mockHttpClientService = new Mock<IHttpClientService>();
-            var mockHttpClientService = new Mock<IHttpClientService>();
+            _mockHttpClientService = new Mock<INonAsyncHttpClientService>();
+            var mockHttpClientService = new Mock<INonAsyncHttpClientService>();
 
             _guid = Guid.NewGuid();
             _player = new PlayerModel();

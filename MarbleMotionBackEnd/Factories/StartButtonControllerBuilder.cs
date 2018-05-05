@@ -14,12 +14,12 @@ namespace MarbleMotionBackEnd.Factories
         private IStartButtonModel model;
         private IStartButtonView view;
         private IPlayerModel player;
-        private IHttpClientService httpClientService;
+        private INonAsyncHttpClientService httpClientService;
 
         /// <summary>
         /// Create a start button controller factory
         /// </summary>
-        public StartButtonControllerBuilder(IStartButtonModel model, IStartButtonView view, IPlayerModel player, IHttpClientService httpClientService)
+        public StartButtonControllerBuilder(IStartButtonModel model, IStartButtonView view, IPlayerModel player, INonAsyncHttpClientService httpClientService)
         {
             this.model = model ?? throw new ArgumentNullException(nameof(model));
             this.view = view ?? throw new ArgumentNullException(nameof(view));
