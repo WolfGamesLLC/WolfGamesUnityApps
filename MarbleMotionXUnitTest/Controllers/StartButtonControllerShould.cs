@@ -5,7 +5,6 @@ using MarbleMotionBackEnd.Models;
 using MarbleMotionBackEnd.Options;
 using MarbleMotionBackEnd.Services;
 using MarbleMotionXUnitTest.TestingUtilities;
-using Microsoft.Extensions.Configuration;
 using Moq;
 using Newtonsoft.Json;
 using System;
@@ -43,13 +42,11 @@ namespace MarbleMotionXUnitTest.Controllers
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
             _mockHttpClientService = new Mock<IHttpClientService>();
-            var _mockHandler = new MockResponseHandler(_mockResponses);
-            var _mockClient = new HttpClient(_mockHandler);
-            var mockHttpClientService = new HttpClientService(_mockClient);
+            var mockHttpClientService = new Mock<IHttpClientService>();
 
             _guid = Guid.NewGuid();
             _player = new PlayerModel();
-            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, mockHttpClientService);
+            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, mockHttpClientService.Object);
             _dut.Options = new StartButtonControllerOptions();
         }
 

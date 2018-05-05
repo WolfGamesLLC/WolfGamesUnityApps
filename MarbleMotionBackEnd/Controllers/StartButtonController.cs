@@ -2,8 +2,6 @@
 using MarbleMotionBackEnd.Interfaces;
 using MarbleMotionBackEnd.Models;
 using MarbleMotionBackEnd.Options;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -18,7 +16,7 @@ namespace MarbleMotionBackEnd.Controllers
     {
         private readonly IStartButtonModel _model;
         private readonly IStartButtonView _view;
-        private readonly IPlayerModel _player;
+        private IPlayerModel _player;
         private readonly IHttpClientService _httpClientService;
 
         /// <summary>
@@ -48,18 +46,10 @@ namespace MarbleMotionBackEnd.Controllers
         /// </summary>
         /// <param name="sender">A reference to the object that fired the event</param>
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
-        public async void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
+        public void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
             Uri uri = new Uri(Options.Uri + _player.Id.ToString());
-            HttpResponseMessage response = await _httpClientService.RequestAsync(uri);
-            if (response.IsSuccessStatusCode)
-            {
-                var responseText = await response.Content.ReadAsStringAsync();
-                var playerResource = JsonConvert.DeserializeObject<PlayerModelResource>(responseText);
-                _player.Score = playerResource.Score;
-                _player.XPosition = playerResource.XPosition;
-                _player.ZPosition = playerResource.ZPosition;
-            }
+            _player = _httpClientService.RequestPlayerData(uri);
         }
     }
 }

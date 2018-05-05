@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace MarbleMotionBackEnd.Models
+﻿namespace MarbleMotionBackEnd.Models
 {
     /// <summary>
     /// Base class for all API resource models
@@ -10,7 +8,6 @@ namespace MarbleMotionBackEnd.Models
         /// <summary>
         /// Contains the link used to access the resource
         /// </summary>
-        [JsonProperty(Order = -2)]
         public string Href { get; set; }
     }
 }

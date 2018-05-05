@@ -12,8 +12,8 @@ namespace MarbleMotionBackEnd.Interfaces
         /// <summary>
         /// Make a request
         /// </summary>
-        /// <param name="request">The Uri to be requested</param>
-        /// <returns>The HttpResponseMessage</returns>
-        Task<HttpResponseMessage> RequestAsync(Uri request);
+        /// <param name="request">The Uri used to request the player data</param>
+        /// <returns>The IPlayerModel data</returns>
+        IPlayerModel RequestPlayerData(Uri request);
     }
 }

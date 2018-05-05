@@ -19,7 +19,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         private StartButtonController _dut;
         private StartButtonView _view;
         private PlayerModel _player;
-        private HttpClientService httpClientService;
+        private WWWHttpClientService httpClientService;
 
         /// <summary>
         /// Initialize the test suite
@@ -29,7 +29,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
             _startButton = new StartButtonModel();
             _view = new StartButtonView();
             _player = new PlayerModel();
-            httpClientService = new HttpClientService(new HttpClient());
+            httpClientService = new WWWHttpClientService();
         }
 
         /// <summary>
