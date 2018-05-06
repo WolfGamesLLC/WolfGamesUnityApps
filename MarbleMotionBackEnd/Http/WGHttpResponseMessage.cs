@@ -11,5 +11,10 @@ namespace MarbleMotionBackEnd.Http
         /// The response's content
         /// </summary>
         public WGHttpContent Content { get; set; }
+
+        /// <summary>
+        /// The response's header list
+        /// </summary>
+        public IEnumerable<KeyValuePair<string, IEnumerable<string>>> Headers { get; set; }
     }
 }

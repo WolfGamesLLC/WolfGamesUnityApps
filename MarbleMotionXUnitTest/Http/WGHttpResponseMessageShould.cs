@@ -1,6 +1,7 @@
 ﻿using MarbleMotionBackEnd.Http;
 using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Text;
 using Xunit;
 
@@ -11,6 +12,9 @@ namespace MarbleMotionXUnitTest.Http
     /// </summary>
     public class WGHttpResponseMessageShould
     {
+        /// <summary>
+        /// Verify access to an http request's response content
+        /// </summary>
         [Fact]
         public void SetAndGetWGHttpResponseContent()
         {
@@ -20,6 +24,20 @@ namespace MarbleMotionXUnitTest.Http
             dut.Content = expectedContent;
 
             Assert.Equal(expectedContent, dut.Content);
+        }
+
+        /// <summary>
+        /// Verify access to an http request's response headers
+        /// </summary>
+        [Fact]
+        public void SetAndGetHttpResponseHeaders()
+        {
+            WGHttpResponseMessage dut = new WGHttpResponseMessage();
+            var expectedHeaders = new List<KeyValuePair<string, IEnumerable<string>>>();
+
+            dut.Headers = expectedHeaders;
+
+            Assert.Equal(expectedHeaders, dut.Headers);
         }
     }
 }

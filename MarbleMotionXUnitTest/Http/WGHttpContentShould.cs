@@ -26,5 +26,21 @@ namespace MarbleMotionXUnitTest.Http
             Assert.Equal(expectedBody, dut.Body);
 
         }
+
+        /// <summary>
+        /// Verify the http response's content headers can be 
+        /// accessed
+        /// </summary>
+        [Fact]
+        public void SetAndGetContentHeaders()
+        {
+            WGHttpContent dut = new WGHttpContent();
+            var expectedHeaders = new Dictionary<string, string> { { "header_1", "value_1" }, { "header_2", "value_2" } };
+
+            dut.expectedHeaders = expectedHeaders;
+
+            Assert.Equal(expectedHeaders, dut.expectedHeaders);
+
+        }
     }
 }
