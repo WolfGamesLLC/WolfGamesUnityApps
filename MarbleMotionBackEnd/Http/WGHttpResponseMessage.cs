@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace MarbleMotionBackEnd.Http
@@ -27,5 +28,10 @@ namespace MarbleMotionBackEnd.Http
         /// The response's reason text
         /// </summary>
         public IEnumerable<char> ReasonPhrase { get; set; }
+
+        /// <summary>
+        /// Returns true if the status code is <see cref="HttpStatusCode.OK"/>
+        /// </summary>
+        public bool IsSuccessStatusCode { get { return HttpStatusCode.OK == StatusCode; } }
     }
 }

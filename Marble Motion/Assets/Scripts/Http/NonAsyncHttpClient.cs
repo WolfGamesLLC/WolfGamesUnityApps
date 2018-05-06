@@ -60,15 +60,18 @@ public class NonAsyncHttpClient : MonoBehaviour
         yield return client;
 
         Response = new WGHttpResponseMessage();
-        if (! string.IsNullOrEmpty(client.error))
+        SetStatusCode(client.error);
+
+        if (Response.IsSuccessStatusCode)
         {
-            Response.StatusCode = HttpStatusCode.NotFound;
-            Response.ReasonPhrase = client.error;
-            Debug.Log("There was an error making the request: " + client.error);
+            Response.Content.Body = client.text;
+            Response.Headers = client.responseHeaders;
+            Debug.Log(client.text);
         }
         else
         {
-            Debug.Log(client.text);
+            Response.ReasonPhrase = client.error;
+            Debug.Log("There was an error making the request: " + client.error);
         }
     }
 }

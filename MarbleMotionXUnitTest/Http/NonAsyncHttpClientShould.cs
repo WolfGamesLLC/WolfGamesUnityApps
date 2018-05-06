@@ -62,5 +62,16 @@ namespace MarbleMotionXUnitTest.Http
             dut.SetStatusCode("Some unknown error text");
             Assert.Equal(HttpStatusCode.InternalServerError, dut.Response.StatusCode);
         }
+
+        /// <summary>
+        /// Verify the <see cref="WGHttpResponseMessage"/> is set to <see cref="HttpStatusCode.InternalServerError"/>
+        /// if the <see cref="WWW"/> objects <see cref="WWW.error"/> property is not null or empty
+        /// </summary>
+        [Fact]
+        public void SetWGHttpResponseMessageFromWWW()
+        {
+            dut.SetStatusCode("Some unknown error text");
+            Assert.Equal(HttpStatusCode.InternalServerError, dut.Response.StatusCode);
+        }
     }
 }
