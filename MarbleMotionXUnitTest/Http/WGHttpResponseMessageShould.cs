@@ -1,6 +1,7 @@
 ﻿using MarbleMotionBackEnd.Http;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using Xunit;
@@ -38,6 +39,34 @@ namespace MarbleMotionXUnitTest.Http
             dut.Headers = expectedHeaders;
 
             Assert.Equal(expectedHeaders, dut.Headers);
+        }
+
+        /// <summary>
+        /// Verify access to an http request's status code
+        /// </summary>
+        [Fact]
+        public void SetAndGetHttpStatusCode()
+        {
+            WGHttpResponseMessage dut = new WGHttpResponseMessage();
+            HttpStatusCode expectedCode = HttpStatusCode.OK;
+
+            dut.StatusCode = expectedCode;
+
+            Assert.Equal(expectedCode, dut.StatusCode);
+        }
+
+        /// <summary>
+        /// Verify access to an http request's response headers
+        /// </summary>
+        [Fact]
+        public void SetAndGetReasonPhrase()
+        {
+            WGHttpResponseMessage dut = new WGHttpResponseMessage();
+            var expectedReasonPhrase = "Reason for fail";
+
+            dut.ReasonPhrase = expectedReasonPhrase;
+
+            Assert.Equal(expectedReasonPhrase, dut.ReasonPhrase);
         }
     }
 }
