@@ -33,7 +33,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         [Fact]
         public void MakeHttpGetRequest()
         {
-            NonAsyncHttpClientService _dut = new NonAsyncHttpClientService();
+            HttpClientService _dut = new HttpClientService();
             var response = _dut.RequestPlayerData(new Uri(WGProdUri));
 
             Assert.Equal(new PlayerModel(), response);

@@ -7,7 +7,7 @@ namespace MarbleMotionBackEnd.Interfaces
     /// <summary>
     /// Interface to an http client service
     /// </summary>
-    public interface INonAsyncHttpClientService
+    public interface IHttpClientService
     {
         /// <summary>
         /// Make a request

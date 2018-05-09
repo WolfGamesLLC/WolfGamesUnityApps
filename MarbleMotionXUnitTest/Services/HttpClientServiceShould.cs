@@ -7,12 +7,12 @@ using Xunit;
 
 namespace MarbleMotionXUnitTest.Services
 {
-    public class NonAsyncHttpClientServiceShould
+    public class HttpClientServiceShould
     {
         [Fact]
         public void RequestPlayerData()
         {
-            INonAsyncHttpClientService httpClientService = new NonAsyncHttpClientService();
+            IHttpClientService httpClientService = new HttpClientService();
             IPlayerModel player = httpClientService.RequestPlayerData(new Uri("http://some.api.url/player"));
             Assert.NotNull(player);
         }
