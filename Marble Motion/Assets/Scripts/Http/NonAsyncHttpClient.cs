@@ -60,18 +60,58 @@ public class NonAsyncHttpClient : MonoBehaviour
         yield return client;
 
         Response = new WGHttpResponseMessage();
-        SetStatusCode(client.error);
-
+        Response.Content = new WGHttpContent();
         if (Response.IsSuccessStatusCode)
         {
-            Response.Content.Body = client.text;
-            Response.Headers = client.responseHeaders;
             Debug.Log(client.text);
         }
         else
         {
-            Response.ReasonPhrase = client.error;
             Debug.Log("There was an error making the request: " + client.error);
         }
+
+        SetWGHttpResponseMessage(client.error, client.text, client.responseHeaders);
+    }
+
+    /// <summary>
+    /// All the contents of the <see cref="WWW"/> request to be cpied to the
+    /// <see cref="WGHttpResponseMessage"/>
+    /// </summary>
+    /// <param name="error">The error string from the WWW object</param>
+    /// <param name="body">The content text of the WWW object</param>
+    /// <param name="headers">The response headers dictionary</param>
+    public void SetWGHttpResponseMessage(string error, string body, Dictionary<string, string> headers)
+    {
+        SetStatusCode(error);
+        Response.Content.Body = body;
+        Response.ReasonPhrase = error;
+
+        var expectedHeaders = new List<KeyValuePair<string, IEnumerable<string>>>();
+
+        if (headers != null)
+        {
+            foreach (KeyValuePair<string, string> kvp in headers)
+            {
+                var expectedValues = new Dictionary<string, IEnumerable<string>>();
+
+                expectedValues.Add(kvp.Key, kvp.Value.Split(' '));
+                foreach (KeyValuePair<string, IEnumerable<string>> kvp2 in expectedValues)
+                {
+                    expectedHeaders.Add(kvp2);
+                }
+            }
+        }
+        else
+        {
+            var expectedValues = new Dictionary<string, IEnumerable<string>>();
+
+            expectedValues.Add("", new List<string>());
+            foreach (KeyValuePair<string, IEnumerable<string>> kvp in expectedValues)
+            {
+                expectedHeaders.Add(kvp);
+            }
+        }
+
+        Response.Headers = expectedHeaders;
     }
 }

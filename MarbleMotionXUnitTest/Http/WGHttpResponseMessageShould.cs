@@ -76,8 +76,20 @@ namespace MarbleMotionXUnitTest.Http
         public void ReportSuccessWhenStatusCodeOk()
         {
             WGHttpResponseMessage dut = new WGHttpResponseMessage();
+            dut.StatusCode = HttpStatusCode.OK;
 
             Assert.True(dut.IsSuccessStatusCode);
+        }
+
+        /// <summary>
+        /// Verify object can report fail status
+        /// </summary>
+        [Fact]
+        public void ReportFailWhenStatusCodeNotOk()
+        {
+            WGHttpResponseMessage dut = new WGHttpResponseMessage();
+
+            Assert.False(dut.IsSuccessStatusCode);
         }
     }
 }
