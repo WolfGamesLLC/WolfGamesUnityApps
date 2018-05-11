@@ -6,12 +6,33 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using MarbleMotionBackEnd.Services;
+using MarbleMotionBackEnd.Http;
+using MarbleMotionBackEnd.Models;
 
 /// <summary>
 /// Class that leverages Unity's <see cref="WWW"/> class to make http requests
 /// </summary>
 public class HttpClientService : IHttpClientService
 {
+    private IHttpClientImp httpClientImp;
+    private IJsonImp jsonImp;
+
+    public HttpClientService(IHttpClientImp httpClientImp, IJsonImp jsonImp)
+    {
+        if (httpClientImp == null)
+        {
+            throw new ArgumentNullException(nameof(httpClientImp));
+        }
+
+        if (jsonImp == null)
+        {
+            throw new ArgumentNullException(nameof(jsonImp));
+        }
+
+        this.httpClientImp = httpClientImp;
+        this.jsonImp = jsonImp;
+    }
+
     /// <summary>
     /// Make a request using the supplied HttpClient
     /// </summary>
@@ -19,6 +40,7 @@ public class HttpClientService : IHttpClientService
     /// <returns>The player data</returns>
     public IPlayerModel RequestPlayerData(Uri request)
     {
-        throw new NotImplementedException();
+        WGHttpResponseMessage responseMessage = httpClientImp.Request(request);
+        return jsonImp.ToPlayer(responseMessage.Content.Body);
     }
 }
