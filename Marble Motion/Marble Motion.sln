@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marble Motion", "Marble Motion.csproj", "{D3EF338A-B825-3E2B-A379-4D24F3CCDDE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marble Motion", "Assembly-CSharp.csproj", "{1A8FD59A-7FAB-484F-6601-6637ABD7106F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marble Motion", "Assembly-CSharp-Editor.csproj", "{511C3801-7932-A2FF-6612-1FF1E848E593}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionXUnitTest", "..\MarbleMotionXUnitTest\MarbleMotionXUnitTest.csproj", "{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}"
 EndProject
@@ -15,10 +17,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D3EF338A-B825-3E2B-A379-4D24F3CCDDE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D3EF338A-B825-3E2B-A379-4D24F3CCDDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D3EF338A-B825-3E2B-A379-4D24F3CCDDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D3EF338A-B825-3E2B-A379-4D24F3CCDDE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A8FD59A-7FAB-484F-6601-6637ABD7106F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8FD59A-7FAB-484F-6601-6637ABD7106F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8FD59A-7FAB-484F-6601-6637ABD7106F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A8FD59A-7FAB-484F-6601-6637ABD7106F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{511C3801-7932-A2FF-6612-1FF1E848E593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511C3801-7932-A2FF-6612-1FF1E848E593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511C3801-7932-A2FF-6612-1FF1E848E593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511C3801-7932-A2FF-6612-1FF1E848E593}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
