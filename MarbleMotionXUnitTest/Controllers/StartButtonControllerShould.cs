@@ -42,11 +42,10 @@ namespace MarbleMotionXUnitTest.Controllers
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
             _mockHttpClientService = new Mock<IHttpClientService>();
-            var mockHttpClientService = new Mock<IHttpClientService>();
 
             _guid = Guid.NewGuid();
             _player = new PlayerModel();
-            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, mockHttpClientService.Object);
+            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, _mockHttpClientService.Object);
             _dut.Options = new StartButtonControllerOptions();
         }
 
@@ -117,23 +116,11 @@ namespace MarbleMotionXUnitTest.Controllers
         [Fact]
         public void LoadPlayerDataOnClickedEventAsync()
         {
-            var expectedPlayer = new PlayerModel();
-            expectedPlayer.Id = _guid;
-            expectedPlayer.Score = 1;
-            expectedPlayer.XPosition = 20;
-            expectedPlayer.ZPosition = 300;
-
-            byte[] content = Encoding.Default.GetBytes("{\"href\": " + $"\"{StartButtonControllerOptions.DefaultUri}{_guid}\"" + ",\"score\": 1,\"xPosition\": 20,\"zPosition\": 300}");
-            var contentStream = new MemoryStream(content);
-            var expectedHttpResponseMessage = new HttpResponseMessage(HttpStatusCode.OK);
-            expectedHttpResponseMessage.Content = new StreamContent(contentStream);
-
-            _mockResponses.Add(new Uri($"{StartButtonControllerOptions.DefaultUri}{_guid}"), expectedHttpResponseMessage);
             _player.Id = _guid;
 
-            _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs());
+            _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs()); // I don't like testing that the handler is registered this way
 
-            Assert.Equal(expectedPlayer, _player);
+            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"{StartButtonControllerOptions.DefaultUri}?{_guid}")), Times.Once);
         }
     }
 }

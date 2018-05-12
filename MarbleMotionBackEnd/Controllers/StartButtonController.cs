@@ -48,7 +48,7 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
         public void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            Uri uri = new Uri(Options.Uri + _player.Id.ToString());
+            Uri uri = new Uri(Options.Uri + "?" + _player.Id.ToString());
             _player = _httpClientService.RequestPlayerData(uri);
         }
     }
