@@ -292,6 +292,7 @@
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Services\HttpClientService.cs" />
+    <Compile Include="Assets\Scripts\Services\UnityJsonConverter.cs" />
     <Compile Include="Assets\Scripts\SpeedBoostPickUp.cs" />
     <Compile Include="Assets\Scripts\Views\StartButtonView.cs" />
   </ItemGroup>
