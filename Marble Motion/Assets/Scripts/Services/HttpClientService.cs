@@ -41,6 +41,6 @@ public class HttpClientService : IHttpClientService
     public IPlayerModel RequestPlayerData(Uri request)
     {
         WGHttpResponseMessage responseMessage = httpClientImp.Request(request);
-        return jsonImp.ToPlayer(responseMessage.Content.Body);
+        return jsonImp.FromJson<IPlayerModel>(responseMessage.Content.Body);
     }
 }

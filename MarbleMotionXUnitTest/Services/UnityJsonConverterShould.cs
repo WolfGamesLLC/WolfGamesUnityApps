@@ -22,7 +22,7 @@ namespace MarbleMotionXUnitTest.Services
             var mockPLayerModel = new Mock<IPlayerModel>();
             var dut = new UnityJsonConverter();
 
-            var playerModel = dut.ToPlayer("{}");
+            var playerModel = dut.FromJson<IPlayerModel>("{}");
 
             mockPLayerModel.VerifySet(player => player.Score = 100, Times.Once);
         }
@@ -37,7 +37,7 @@ namespace MarbleMotionXUnitTest.Services
             var dut = new UnityJsonConverter();
             var expectedJsonText = "{}";
 
-            var jsonText = dut.FromPlayer(playerModel);
+            var jsonText = dut.ToJson(playerModel);
 
             Assert.Equal(expectedJsonText, jsonText);
         }

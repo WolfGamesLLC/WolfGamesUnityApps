@@ -8,17 +8,17 @@ namespace MarbleMotionBackEnd.Interfaces
     public interface IJsonImp
     {
         /// <summary>
-        /// Convert a <see cref="IEnumerable{char}"/> in JSON format to an <see cref="IPlayerModel"/>
+        /// Convert a <see cref="IEnumerable{char}"/> in JSON format to an object
         /// </summary>
         /// <param name="jsonFormatedText">the JSON <see cref="IEnumerable<char>"/> to be converted</param>
-        /// <returns>the resultant <see cref="IPlayerModel"/></returns>
-        IPlayerModel ToPlayer(IEnumerable<char> jsonFormatedText);
+        /// <returns>the resultant object of type T</returns>
+        T FromJson<T>(IEnumerable<char> jsonFormatedText);
 
         /// <summary>
-        /// Convert a <see cref="IPlayerModel"/> to a JSON formated <see cref="IEnumerable{char}"/>
+        /// Convert an object to a JSON formated <see cref="IEnumerable{char}"/>
         /// </summary>
-        /// <param name="playerModel"></param>
-        /// <returns></returns>
-        IEnumerable<char> FromPlayer(IPlayerModel playerModel);
+        /// <param name="obj">the object to be converted</param>
+        /// <returns>the JSON formated string</returns>
+        IEnumerable<char> ToJson(object obj);
     }
 }

@@ -12,22 +12,22 @@ using UnityEngine;
 public class UnityJsonConverter : IJsonImp
 {
     /// <summary>
-    /// Convert an <see cref="IPlayerModel"/> to a <see cref="IEnumerable{char}"/>
+    /// Convert a <see cref="IEnumerable{char}"/> in JSON format to an object
     /// </summary>
-    /// <param name="playerModel">the player data object to be converted</param>
-    /// <returns>the resultant string</returns>
-    public IEnumerable<char> FromPlayer(IPlayerModel playerModel)
+    /// <param name="jsonFormatedText">the JSON <see cref="IEnumerable<char>"/> to be converted</param>
+    /// <returns>the resultant object of type T</returns>
+    public T FromJson<T>(IEnumerable<char> jsonFormatedText)
     {
-        return JsonUtility.ToJson(playerModel);
+        return JsonUtility.FromJson<T>(jsonFormatedText as string);
     }
 
     /// <summary>
-    /// Convert an <see cref="IEnumerable{char}"/> to a <see cref="IPlayerModel"/>
+    /// Convert an object to a JSON formated <see cref="IEnumerable{char}"/>
     /// </summary>
-    /// <param name="jsonFormatedText">the string to convert</param>
-    /// <returns>the resultant player data object</returns>
-    public IPlayerModel ToPlayer(IEnumerable<char> jsonFormatedText)
+    /// <param name="obj">the object to be converted</param>
+    /// <returns>the JSON formated string</returns>
+    public IEnumerable<char> ToJson(object obj)
     {
-        return JsonUtility.FromJson<IPlayerModel>(jsonFormatedText as string);
+        return JsonUtility.ToJson(obj);
     }
 }
