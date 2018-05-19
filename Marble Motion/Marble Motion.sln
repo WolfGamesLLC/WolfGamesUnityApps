@@ -1,13 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marble Motion", "Assembly-CSharp.csproj", "{1A8FD59A-7FAB-484F-6601-6637ABD7106F}"
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{1A8FD59A-7FAB-484F-6601-6637ABD7106F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB} = {10A8D11F-17FE-4207-ADAF-A01776B2ADCB}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marble Motion", "Assembly-CSharp-Editor.csproj", "{511C3801-7932-A2FF-6612-1FF1E848E593}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{511C3801-7932-A2FF-6612-1FF1E848E593}"
+	ProjectSection(ProjectDependencies) = postProject
+		{10A8D11F-17FE-4207-ADAF-A01776B2ADCB} = {10A8D11F-17FE-4207-ADAF-A01776B2ADCB}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionXUnitTest", "..\MarbleMotionXUnitTest\MarbleMotionXUnitTest.csproj", "{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}"
+	ProjectSection(ProjectDependencies) = postProject
+		{511C3801-7932-A2FF-6612-1FF1E848E593} = {511C3801-7932-A2FF-6612-1FF1E848E593}
+		{1A8FD59A-7FAB-484F-6601-6637ABD7106F} = {1A8FD59A-7FAB-484F-6601-6637ABD7106F}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionBackEnd.Integration.XUnitTestSuite", "..\MarbleMotionBackEnd.Integration.XUnitTestSuite\MarbleMotionBackEnd.Integration.XUnitTestSuite.csproj", "{A5795362-E670-4A8D-B960-7703DECC6B08}"
+	ProjectSection(ProjectDependencies) = postProject
+		{511C3801-7932-A2FF-6612-1FF1E848E593} = {511C3801-7932-A2FF-6612-1FF1E848E593}
+		{1A8FD59A-7FAB-484F-6601-6637ABD7106F} = {1A8FD59A-7FAB-484F-6601-6637ABD7106F}
+		{A2CAA79E-FFBE-452A-96AF-AC2570AA2D08} = {A2CAA79E-FFBE-452A-96AF-AC2570AA2D08}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleMotionBackEnd", "..\MarbleMotionBackEnd\MarbleMotionBackEnd.csproj", "{10A8D11F-17FE-4207-ADAF-A01776B2ADCB}"
 EndProject
@@ -40,5 +57,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D7D9075-44C0-4D1A-8E0B-461747CF2099}
 	EndGlobalSection
 EndGlobal

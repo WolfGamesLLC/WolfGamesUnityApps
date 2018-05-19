@@ -1,4 +1,5 @@
-﻿using MarbleMotionBackEnd.Models;
+﻿using MarbleMotionBackEnd.Interfaces;
+using MarbleMotionBackEnd.Models;
 using MarbleMotionBackEnd.Services;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         [Fact(Skip = "Until I can figure out how to properly unit test Unity internal methods")]
         public void MakeHttpGetRequest()
         {
-            HttpClientService _dut = new HttpClientService(null, null);
+            IHttpClientService _dut = new HttpClientService(null, null);
             var response = _dut.RequestPlayerData(new Uri(WGProdUri));
 
             Assert.Equal(new PlayerModel(), response);
