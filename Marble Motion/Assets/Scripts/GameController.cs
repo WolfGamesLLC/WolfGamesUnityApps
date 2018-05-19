@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
         StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model, 
                                                                                                     startButtonViewFactory.View,
                                                                                                     new PlayerModel(), 
-                                                                                                    new HttpClientService(null, null));
+                                                                                                    new HttpClientService(new NonAsyncHttpClient(), new UnityJsonConverter()));
         IStartButtonControllerOptions options = new StartButtonControllerOptions();
         if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players");
         else if (Debug.developerConsoleVisible) options.Uri = new Uri("https://localhost:44340/api/players/");

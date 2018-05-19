@@ -1,4 +1,5 @@
 ﻿using MarbleMotionBackEnd.Http;
+using MarbleMotionBackEnd.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using UnityEngine;
 /// <summary>
 /// Implement a non asyncronous http client
 /// </summary>
-public class NonAsyncHttpClient : MonoBehaviour
+public class NonAsyncHttpClient : MonoBehaviour, IHttpClientImp
 {
     private Uri uri;
     private WWW client;
