@@ -41,9 +41,7 @@ public class NonAsyncHttpClient : MonoBehaviour, IHttpClientImp
     {
         this.uri = uri;
 
-        StartCoroutine(MakeRequest());
-
-        return Response;
+        return MakeNonAsyncRequest();
     }
 
     /// <summary>
@@ -55,13 +53,20 @@ public class NonAsyncHttpClient : MonoBehaviour, IHttpClientImp
         Response.StatusCode = string.IsNullOrEmpty(errorText) ? HttpStatusCode.OK : HttpStatusCode.InternalServerError;
     }
 
-    private IEnumerator MakeRequest()
+    private WGHttpResponseMessage MakeNonAsyncRequest()
     {
+        Debug.Log("Request: {" + uri.ToString() + "}");
         client = new WWW(uri.ToString());
-        yield return client;
+
+        while(true)
+        {
+            if (client.isDone) break;
+        }
 
         Response = new WGHttpResponseMessage();
         Response.Content = new WGHttpContent();
+
+        SetWGHttpResponseMessage(client.error, client.text, client.responseHeaders);
         if (Response.IsSuccessStatusCode)
         {
             Debug.Log(client.text);
@@ -71,7 +76,7 @@ public class NonAsyncHttpClient : MonoBehaviour, IHttpClientImp
             Debug.Log("There was an error making the request: " + client.error);
         }
 
-        SetWGHttpResponseMessage(client.error, client.text, client.responseHeaders);
+        return Response;
     }
 
     /// <summary>

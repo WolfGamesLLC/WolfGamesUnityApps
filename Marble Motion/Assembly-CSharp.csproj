@@ -60,7 +60,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Factories\StartButtonViewFactory.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\HSController.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="Assets\Scripts\MD5.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Services\HttpClientService.cs" />
     <Compile Include="Assets\Scripts\Services\UnityJsonConverter.cs" />
     <Compile Include="Assets\Scripts\SpeedBoostPickUp.cs" />
     <Compile Include="Assets\Scripts\Views\StartButtonView.cs" />

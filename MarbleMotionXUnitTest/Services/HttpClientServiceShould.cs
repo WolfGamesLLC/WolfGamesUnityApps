@@ -7,6 +7,7 @@ using Xunit;
 using Moq;
 using MarbleMotionBackEnd.Models;
 using MarbleMotionBackEnd.Http;
+using MarbleMotionBackEnd.Services;
 
 namespace MarbleMotionXUnitTest.Services
 {
