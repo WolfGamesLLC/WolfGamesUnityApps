@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Resources\PlayerModelResource.cs" />
     <Compile Include="Assets\Scripts\Services\UnityJsonConverter.cs" />
     <Compile Include="Assets\Scripts\SpeedBoostPickUp.cs" />
+    <Compile Include="Assets\Scripts\Views\PlayerView.cs" />
     <Compile Include="Assets\Scripts\Views\StartButtonView.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Dain/Documents/WolfGames/WolfGamesUnityApps/Marble Motion/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
