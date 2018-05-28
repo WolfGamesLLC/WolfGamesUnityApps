@@ -10,6 +10,9 @@ namespace MarbleMotionBackEnd.Interfaces
     /// </summary>
     public interface IPlayerView
     {
+        /// <summary>
+        /// Fired when a player object position changes
+        /// </summary>
         event EventHandler<PlayerPositionChangedEventArgs> OnPlayerPositionChanged;
     }
 }

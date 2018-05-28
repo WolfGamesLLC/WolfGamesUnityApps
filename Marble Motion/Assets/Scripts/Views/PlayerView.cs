@@ -10,5 +10,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerView : MonoBehaviour , IPlayerView
 {
+    /// <summary>
+    /// Fired when a player object position changes
+    /// </summary>
     public event EventHandler<PlayerPositionChangedEventArgs> OnPlayerPositionChanged;
 }
