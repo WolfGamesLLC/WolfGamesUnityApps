@@ -71,7 +71,7 @@ namespace MarbleMotionXUnitTest.Services
             IPlayerModel player = httpClientService.RequestPlayerData(expectedUri);
 
             mockHttpClientImp.Verify(imp => imp.Request(expectedUri));
-            mockJsonImp.Verify(imp => imp.FromJson<IPlayerModel>(responseMessage.Content.Body));
+            mockJsonImp.Verify(imp => imp.PlayerFromJson(responseMessage.Content.Body));
         }
     }
 }

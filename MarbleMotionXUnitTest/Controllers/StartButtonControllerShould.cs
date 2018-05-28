@@ -120,7 +120,37 @@ namespace MarbleMotionXUnitTest.Controllers
 
             _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs()); // I don't like testing that the handler is registered this way
 
-            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"{StartButtonControllerOptions.DefaultUri}?{_guid}")), Times.Once);
+            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"{StartButtonControllerOptions.DefaultUri}{_guid}")), Times.Once);
+        }
+
+        /// <summary>
+        /// Verify that the <see cref="StartButtonController.HandleOnClickedEvent(object, StartButtonClickedEventArgs)"/> event 
+        /// adds a / when none is present on the original path
+        /// </summary>
+        [Fact]
+        public void PlayerDataRequestUriAddForwardSlashToEnd()
+        {
+            _player.Id = _guid;
+            _dut.Options.Uri = new Uri("https://marbelmotion.wolfgamesllc.com/api/players");
+
+            _dut.HandleOnClickedEvent(null, new StartButtonClickedEventArgs());
+
+            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}")), Times.Once);
+        }
+
+        /// <summary>
+        /// Verify that the <see cref="StartButtonController.HandleOnClickedEvent(object, StartButtonClickedEventArgs)"/> event 
+        /// adds a / when none is present on the original path
+        /// </summary>
+        [Fact]
+        public void PlayerDataRequestUriNoForwardSlashToEnd()
+        {
+            _player.Id = _guid;
+            _dut.Options.Uri = new Uri("https://marbelmotion.wolfgamesllc.com/api/players/");
+
+            _dut.HandleOnClickedEvent(null, new StartButtonClickedEventArgs());
+
+            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}")), Times.Once);
         }
     }
 }
