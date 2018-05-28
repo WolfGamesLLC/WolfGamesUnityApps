@@ -1,6 +1,7 @@
 ﻿using MarbleMotionBackEnd.Interfaces;
 using System;
 using MarbleMotionBackEnd.Http;
+using MarbleMotionBackEnd.Models;
 
 namespace MarbleMotionBackEnd.Services
 {
@@ -26,7 +27,7 @@ namespace MarbleMotionBackEnd.Services
         public IPlayerModel RequestPlayerData(Uri request)
         {
             WGHttpResponseMessage responseMessage = httpClientImp.Request(request);
-            return jsonImp.FromJson<IPlayerModel>(responseMessage.Content.Body);
+            return jsonImp.PlayerFromJson(responseMessage.Content.Body);
         }
     }
 }

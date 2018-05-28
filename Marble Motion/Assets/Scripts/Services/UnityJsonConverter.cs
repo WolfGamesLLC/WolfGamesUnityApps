@@ -1,4 +1,5 @@
 ﻿using MarbleMotionBackEnd.Interfaces;
+using MarbleMotionBackEnd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,5 +30,24 @@ public class UnityJsonConverter : IJsonImp
     public IEnumerable<char> ToJson(object obj)
     {
         return JsonUtility.ToJson(obj);
+    }
+
+    /// <summary>
+    /// Convert a <see cref="IEnumerable{char}"/> in JSON format to an object that implements <see cref="IPlayerModel"/>
+    /// </summary>
+    /// <param name="jsonFormatedText">the JSON <see cref="IEnumerable<char>"/> to be converted</param>
+    /// <returns>the resultant object implementing <see cref="IPlayerModel"/></returns>
+    public IPlayerModel PlayerFromJson(IEnumerable<char> jsonFormatedText)
+    {
+        var playerModelResource = FromJson<PlayerModelResource>(jsonFormatedText);
+
+        Debug.Log("playerModelResource = {" + playerModelResource + "}");
+
+        var playerModel = new PlayerModel();
+        playerModel.Score = playerModelResource.Score;
+        playerModel.XPosition = playerModelResource.XPosition;
+        playerModel.ZPosition = playerModelResource.ZPosition;
+
+        return playerModel;
     }
 }

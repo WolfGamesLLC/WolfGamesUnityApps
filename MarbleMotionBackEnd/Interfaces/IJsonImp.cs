@@ -20,5 +20,12 @@ namespace MarbleMotionBackEnd.Interfaces
         /// <param name="obj">the object to be converted</param>
         /// <returns>the JSON formated string</returns>
         IEnumerable<char> ToJson(object obj);
+
+        /// <summary>
+        /// Convert a <see cref="IEnumerable{char}"/> in JSON format to an object that implements <see cref="IPlayerModel"/>
+        /// </summary>
+        /// <param name="jsonFormatedText">the JSON <see cref="IEnumerable<char>"/> to be converted</param>
+        /// <returns>the resultant object implementing <see cref="IPlayerModel"/></returns>
+        IPlayerModel PlayerFromJson(IEnumerable<char> jsonFormatedText);
     }
 }

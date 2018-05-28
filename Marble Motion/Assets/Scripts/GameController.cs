@@ -29,10 +29,13 @@ public class GameController : MonoBehaviour
             Debug.Log("couldn't locate StartButtonView in main menu");
         }
 
+        var player = new PlayerModel();
+        player.Id = new Guid("11111111-1111-1111-1111-111111111112");
+
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
         StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model, 
                                                                                                     startButtonView,
-                                                                                                    new PlayerModel(), 
+                                                                                                    player, 
                                                                                                     new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter()));
         IStartButtonControllerOptions options = new StartButtonControllerOptions();
         if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players");

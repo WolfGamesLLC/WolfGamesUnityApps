@@ -1,8 +1,11 @@
-﻿namespace MarbleMotionBackEnd.Models
+﻿using System;
+
+namespace MarbleMotionBackEnd.Models
 {
     /// <summary>
     /// Player data model for the Marble Motion game
     /// </summary>
+    [Serializable]
     public class PlayerModelResource : ApiResource
     {
         /// <summary>
