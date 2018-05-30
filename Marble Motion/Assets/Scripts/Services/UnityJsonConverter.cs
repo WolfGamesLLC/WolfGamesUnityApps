@@ -45,8 +45,8 @@ public class UnityJsonConverter : IJsonImp
 
         var playerModel = new PlayerModel();
         playerModel.Score = playerModelResource.Score;
-        playerModel.XPosition = playerModelResource.XPosition;
-        playerModel.ZPosition = playerModelResource.ZPosition;
+        playerModel.Position.X = playerModelResource.XPosition;
+        playerModel.Position.Z = playerModelResource.ZPosition;
 
         return playerModel;
     }

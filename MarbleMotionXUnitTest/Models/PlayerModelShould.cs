@@ -67,28 +67,6 @@ namespace MarbleMotionXUnitTest.Models
         }
 
         /// <summary>
-        /// The X position should be set and retrieved
-        /// </summary>
-        [Fact]
-        public void ShouldSetAndGetXPosition()
-        {
-            int expected = 12345;
-            _player.XPosition = expected;
-            Assert.Equal(expected, _player.XPosition);
-        }
-
-        /// <summary>
-        /// The Y position should be set and retrieved
-        /// </summary>
-        [Fact]
-        public void ShouldSetAndGetYPosition()
-        {
-            int expected = 12345;
-            _player.ZPosition = expected;
-            Assert.Equal(expected, _player.ZPosition);
-        }
-
-        /// <summary>
         /// Verify that player is not equal to a null
         /// </summary>
         [Fact]
@@ -155,58 +133,6 @@ namespace MarbleMotionXUnitTest.Models
             _expectedPlayer.Score = 1;
 
             _player.Score = _expectedPlayer.Score;
-
-            Assert.Equal(_expectedPlayer, _player);
-        }
-
-        /// <summary>
-        /// Verify that two player objects with different x positions return not equal
-        /// </summary>
-        [Fact]
-        public void ReturnNotEqualWithNotEqualXPosition()
-        {
-            _expectedPlayer.XPosition = 1;
-
-            _player.XPosition = 2;
-
-            Assert.NotEqual(_expectedPlayer, _player);
-        }
-
-        /// <summary>
-        /// Verify that two player objects with equal x positions return equal
-        /// </summary>
-        [Fact]
-        public void ReturnEqualWithEqualXPosition()
-        {
-            _expectedPlayer.XPosition = 1;
-
-            _player.XPosition = _expectedPlayer.XPosition;
-
-            Assert.Equal(_expectedPlayer, _player);
-        }
-
-        /// <summary>
-        /// Verify that two player objects with different x positions return not equal
-        /// </summary>
-        [Fact]
-        public void ReturnNotEqualWithNotEqualZPosition()
-        {
-            _expectedPlayer.ZPosition = 1;
-
-            _player.ZPosition = 2;
-
-            Assert.NotEqual(_expectedPlayer, _player);
-        }
-
-        /// <summary>
-        /// Verify that two player objects with equal x positions return equal
-        /// </summary>
-        [Fact]
-        public void ReturnEqualWithEqualZPosition()
-        {
-            _expectedPlayer.ZPosition = 1;
-
-            _player.ZPosition = _expectedPlayer.ZPosition;
 
             Assert.Equal(_expectedPlayer, _player);
         }

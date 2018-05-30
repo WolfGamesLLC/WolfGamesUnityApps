@@ -19,16 +19,6 @@ namespace MarbleMotionBackEnd.Models
         public long Score { get; set; }
 
         /// <summary>
-        /// The payer's character X position
-        /// </summary>
-        public int XPosition { get; set; }
-
-        /// <summary>
-        /// The payer's character Z position
-        /// </summary>
-        public int ZPosition { get; set; }
-
-        /// <summary>
         /// The player's position in 3D space
         /// </summary>
         public IVector3 Position { get; set; }
@@ -43,7 +33,7 @@ namespace MarbleMotionBackEnd.Models
 
             PlayerModel other = obj as PlayerModel;
 
-            return other.Id == this.Id && other.Score == this.Score && other.XPosition == this.XPosition && other.ZPosition == this.ZPosition;
+            return other.Id == this.Id && other.Score == this.Score && other.Position == this.Position;
         }
 
         // override object.GetHashCode

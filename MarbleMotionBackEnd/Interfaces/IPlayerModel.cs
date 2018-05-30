@@ -19,16 +19,6 @@ namespace MarbleMotionBackEnd.Interfaces
         long Score { get; set; }
 
         /// <summary>
-        /// The payer's character X position
-        /// </summary>
-        int XPosition { get; set; }
-
-        /// <summary>
-        /// The payer's character Z position
-        /// </summary>
-        int ZPosition { get; set; }
-
-        /// <summary>
         /// The player's position in 3D space
         /// </summary>
         IVector3 Position { get; set; }
