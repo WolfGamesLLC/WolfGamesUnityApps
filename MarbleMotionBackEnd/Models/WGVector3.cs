@@ -10,6 +10,7 @@ namespace MarbleMotionBackEnd.Models
         public WGVector3(float x = 0.0f, float y = 0.0f, float z = 0.0f)
         {
             X = x;
+            Y = y;
             Z = z;
         }
 
@@ -21,7 +22,7 @@ namespace MarbleMotionBackEnd.Models
         /// <summary>
         /// The Y position
         /// </summary>
-//        public float Y { get; set; }
+        public float Y { get; set; }
 
         /// <summary>
         /// The Z position
@@ -38,13 +39,13 @@ namespace MarbleMotionBackEnd.Models
 
             IVector3 other = obj as IVector3;
 
-            return other.X == this.X && other.Z == this.Z;
+            return other.X == this.X && other.Y == this.Y && other.Z == this.Z;
         }
 
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            return X.GetHashCode() + Z.GetHashCode();
+            return X.GetHashCode();
         }
     }
 }

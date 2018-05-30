@@ -34,6 +34,19 @@ namespace MarbleMotionXUnitTest.Models
         }
 
         /// <summary>
+        /// verify that an instance of WGVector3 can be created with values
+        /// </summary>
+        [Fact]
+        public void CreateWGVector3WithValues()
+        {
+            _dut = new WGVector3(1f,2f,3f);
+
+            Assert.Equal(1f, _dut.X);
+            Assert.Equal(2f, _dut.Y);
+            Assert.Equal(3f, _dut.Z);
+        }
+
+        /// <summary>
         /// The X position should be set and retrieved
         /// </summary>
         [Fact]
@@ -42,6 +55,17 @@ namespace MarbleMotionXUnitTest.Models
             int expected = 12345;
             _dut.X = expected;
             Assert.Equal(expected, _dut.X);
+        }
+
+        /// <summary>
+        /// The Y position should be set and retrieved
+        /// </summary>
+        [Fact]
+        public void ShouldSetAndGetYPosition()
+        {
+            int expected = 12345;
+            _dut.Y = expected;
+            Assert.Equal(expected, _dut.Y);
         }
 
         /// <summary>
@@ -96,6 +120,32 @@ namespace MarbleMotionXUnitTest.Models
             _expected.X = 1;
 
             _dut.X = _expected.X;
+
+            Assert.Equal(_expected, _dut);
+        }
+
+        /// <summary>
+        /// Verify that two WGVector3 objects with different y positions return not equal
+        /// </summary>
+        [Fact]
+        public void ReturnNotEqualWithNotEqualYPosition()
+        {
+            _expected.Y = 1;
+
+            _dut.Y = 2;
+
+            Assert.NotEqual(_expected, _dut);
+        }
+
+        /// <summary>
+        /// Verify that two WGVector3 objects with equal y positions return equal
+        /// </summary>
+        [Fact]
+        public void ReturnEqualWithEqualYPosition()
+        {
+            _expected.Y = 1;
+
+            _dut.Y = _expected.Y;
 
             Assert.Equal(_expected, _dut);
         }

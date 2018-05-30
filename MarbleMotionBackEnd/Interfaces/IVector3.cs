@@ -6,12 +6,17 @@
     public interface IVector3
     {
         /// <summary>
-        /// The payer's character X position
+        /// The X position
         /// </summary>
         float X { get; set; }
 
         /// <summary>
-        /// The payer's character Z position
+        /// The Y position
+        /// </summary>
+        float Y { get; set; }
+
+        /// <summary>
+        /// The Z position
         /// </summary>
         float Z { get; set; }
     }
