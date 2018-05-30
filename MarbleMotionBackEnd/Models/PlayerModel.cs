@@ -28,6 +28,11 @@ namespace MarbleMotionBackEnd.Models
         /// </summary>
         public int ZPosition { get; set; }
 
+        /// <summary>
+        /// The player's position in 3D space
+        /// </summary>
+        public IVector3 Position { get; set; }
+
         // override object.Equals
         public override bool Equals(object obj)
         {

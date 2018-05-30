@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarbleMotionBackEnd.Interfaces;
+using System;
 
 namespace MarbleMotionBackEnd.Interfaces
 {
@@ -26,5 +27,10 @@ namespace MarbleMotionBackEnd.Interfaces
         /// The payer's character Z position
         /// </summary>
         int ZPosition { get; set; }
+
+        /// <summary>
+        /// The player's position in 3D space
+        /// </summary>
+        IVector3 Position { get; set; }
     }
 }

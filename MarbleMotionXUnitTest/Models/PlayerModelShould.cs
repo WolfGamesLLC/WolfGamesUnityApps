@@ -1,4 +1,5 @@
-﻿using MarbleMotionBackEnd.Models;
+﻿using MarbleMotionBackEnd.Interfaces;
+using MarbleMotionBackEnd.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -52,6 +53,17 @@ namespace MarbleMotionXUnitTest.Models
             long expected = 12345;
             _player.Score = expected;
             Assert.Equal(expected, _player.Score);
+        }
+
+        /// <summary>
+        /// The position should be set and retrieved
+        /// </summary>
+        [Fact]
+        public void ShouldSetAndGetPosition()
+        {
+            WGVector3 expected = new WGVector3();
+            _player.Position = expected;
+            Assert.Equal(expected, _player.Position);
         }
 
         /// <summary>
