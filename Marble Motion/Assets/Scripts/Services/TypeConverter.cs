@@ -1,4 +1,5 @@
-﻿using MarbleMotionBackEnd.Models;
+﻿using MarbleMotionBackEnd.Interfaces;
+using MarbleMotionBackEnd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Services
     /// </summary>
     public class TypeConverter
     {
-        public static Vector3 WGVector3ToVector3(WGVector3 wGVector3)
+        public static Vector3 WGVector3ToVector3(IVector3 wGVector3)
         {
             return new Vector3(wGVector3.X, wGVector3.Y, wGVector3.Z);
         }

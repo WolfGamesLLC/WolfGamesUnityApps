@@ -1,4 +1,5 @@
-﻿using MarbleMotionBackEnd.EventArgs;
+﻿using Assets.Scripts.Services;
+using MarbleMotionBackEnd.EventArgs;
 using MarbleMotionBackEnd.Interfaces;
 using System;
 using System.Collections;
@@ -21,7 +22,7 @@ public class PlayerView : MonoBehaviour , IPlayerView
     /// </summary>
     private void Update()
     {
-//        transform.position = Model.Position;
+        transform.position = TypeConverter.WGVector3ToVector3(Model.Position);
     }
 
     /// <summary>

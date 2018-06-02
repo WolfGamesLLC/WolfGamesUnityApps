@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
 
         var player = new PlayerModel();
         player.Id = new Guid("11111111-1111-1111-1111-111111111112");
+        player.Position = new WGVector3();
 
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
         StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model,
