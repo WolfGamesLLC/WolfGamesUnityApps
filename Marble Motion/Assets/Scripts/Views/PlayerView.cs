@@ -22,7 +22,7 @@ public class PlayerView : MonoBehaviour , IPlayerView
     /// </summary>
     private void Update()
     {
-        transform.position = TypeConverter.WGVector3ToVector3(Model.Position);
+//        transform.position = TypeConverter.WGVector3ToVector3(Model.Position);
     }
 
     /// <summary>
@@ -30,7 +30,7 @@ public class PlayerView : MonoBehaviour , IPlayerView
     /// </summary>
     public void RunOnLoadEvent()
     {
-        throw new NotImplementedException();
+        OnLoad(this, new OnPlayerLoadEventArgs());
     }
 
     /// <summary>

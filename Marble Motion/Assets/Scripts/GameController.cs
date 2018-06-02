@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     {
         mainMenu.AddComponent<NonAsyncHttpClient>();
         CreateStartButton();
+        CreatePlayer();
     }
 
     private void CreateStartButton()
@@ -48,6 +49,32 @@ public class GameController : MonoBehaviour
         if (Application.isEditor) options.Uri = new Uri("https://localhost:44340/api/players/");
 
         startButtonControllerBuilder.Configure(options).Build();
+    }
+
+    private void CreatePlayer()
+    {
+        var playerView = mainMenu.GetComponentInChildren<Player>();
+        if (playerView == null)
+        {
+            Debug.Log("couldn't locate PlayerView in main menu");
+        }
+
+        var player = new PlayerModel();
+        player.Id = new Guid("11111111-1111-1111-1111-111111111112");
+        player.Position = new WGVector3();
+
+        PlayerModelFactory PlayerModelFactory = new PlayerModelFactory();
+        PlayerControllerBuilder PlayerControllerBuilder = new PlayerControllerBuilder(PlayerModelFactory.Model,
+                                                                                                    playerView);
+        
+        
+        IPlayerControllerOptions options = new PlayerControllerOptions();
+        if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players/");
+        if (Application.isEditor) options.Uri = new Uri("https://localhost:44340/api/players/");
+
+        IHttpClientService httpClient = new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter());
+
+        PlayerControllerBuilder.Configure(options).ConfigureHttpClientService(httpClient).Build();
     }
 
     // Use this for initialization
