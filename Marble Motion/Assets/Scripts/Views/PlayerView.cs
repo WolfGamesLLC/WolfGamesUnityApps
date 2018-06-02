@@ -26,7 +26,15 @@ public class PlayerView : MonoBehaviour , IPlayerView
     }
 
     /// <summary>
-    /// Fired when a player object position changes
+    /// Fire the <see cref="OnLoad"/> event
     /// </summary>
-    public event EventHandler<OnPlayerPositionChangedEventArgs> OnPlayerPositionChanged;
+    public void RunOnLoadEvent()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Fired when a player object needs to be loaded from storage
+    /// </summary>
+    public event EventHandler<OnPlayerLoadEventArgs> OnLoad;
 }

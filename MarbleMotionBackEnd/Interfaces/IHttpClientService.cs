@@ -15,5 +15,6 @@ namespace MarbleMotionBackEnd.Interfaces
         /// <param name="request">The Uri used to request the player data</param>
         /// <returns>The IPlayerModel data</returns>
         IPlayerModel RequestPlayerData(Uri request);
+        void RequestPlayerData(Uri uri, IPlayerModel model);
     }
 }

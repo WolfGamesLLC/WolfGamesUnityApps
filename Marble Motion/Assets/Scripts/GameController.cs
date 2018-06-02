@@ -14,7 +14,7 @@ using MarbleMotionBackEnd.Options;
 public class GameController : MonoBehaviour
 {
     public MenuController menu;
-    public PlayerController player;
+    public OldPlayerController player;
     public GameObject mainMenu;
 
     Game game;

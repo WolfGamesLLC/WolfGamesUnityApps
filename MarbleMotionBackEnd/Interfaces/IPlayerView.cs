@@ -19,6 +19,11 @@ namespace MarbleMotionBackEnd.Interfaces
         /// <summary>
         /// Fired when a player object position changes
         /// </summary>
-        event EventHandler<OnPlayerPositionChangedEventArgs> OnPlayerPositionChanged;
+        event EventHandler<OnPlayerLoadEventArgs> OnLoad;
+
+        /// <summary>
+        /// Method used to allow unity to run the OnLoad event
+        /// </summary>
+        void RunOnLoadEvent();
     }
 }

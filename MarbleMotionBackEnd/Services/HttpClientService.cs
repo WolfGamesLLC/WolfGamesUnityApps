@@ -29,5 +29,10 @@ namespace MarbleMotionBackEnd.Services
             WGHttpResponseMessage responseMessage = httpClientImp.Request(request);
             return jsonImp.PlayerFromJson(responseMessage.Content.Body);
         }
+
+        public void RequestPlayerData(Uri uri, IPlayerModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
