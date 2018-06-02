@@ -38,7 +38,7 @@ namespace MarbleMotionXUnitTest.Controllers
             _guid = Guid.NewGuid();
             _dut = new PlayerController(_mockModel, _mockView.Object);
             _dut.Options = new PlayerControllerOptions();
-            _dut.HttpService = _mockHttpClientService.Object;
+            _dut.HttpClientService = _mockHttpClientService.Object;
         }
 
         /// <summary>
@@ -89,9 +89,9 @@ namespace MarbleMotionXUnitTest.Controllers
         public void SetPlayerControllerHttpClientService()
         {
             var mockService = new Mock<IHttpClientService>();
-            _dut.HttpService = mockService.Object;
+            _dut.HttpClientService = mockService.Object;
 
-            Assert.NotNull(_dut.HttpService);
+            Assert.NotNull(_dut.HttpClientService);
         }
 
         /// <summary>

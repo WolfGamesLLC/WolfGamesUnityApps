@@ -13,6 +13,6 @@
         /// <summary>
         /// <see cref="IHttpClientService"/> used by the controller
         /// </summary>
-        IHttpClientService HttpService { get; set; }
+        IHttpClientService HttpClientService { get; set; }
     }
 }

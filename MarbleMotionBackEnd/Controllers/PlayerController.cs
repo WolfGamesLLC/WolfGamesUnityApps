@@ -36,7 +36,7 @@ namespace MarbleMotionBackEnd.Controllers
         /// <summary>
         /// The <see cref="IHttpClientService"/> to be used by this object
         /// </summary>
-        public IHttpClientService HttpService { get; set; }
+        public IHttpClientService HttpClientService { get; set; }
 
         /// <summary>
         /// Event handler for the <see cref="IPlayerView.OnLoad"/> event
@@ -46,7 +46,7 @@ namespace MarbleMotionBackEnd.Controllers
         public void HandleOnLoadEvent(object p, OnPlayerLoadEventArgs onPlayerLoadEventArgs)
         {
             Uri uri = new Uri(Options.Uri.ToString().TrimEnd('/') + "/" + model.Id.ToString());
-            HttpService.RequestPlayerData(uri, model);
+            HttpClientService.RequestPlayerData(uri, model);
         }
     }
 }
