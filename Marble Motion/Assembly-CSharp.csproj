@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Resources\PlayerModelResource.cs" />
+    <Compile Include="Assets\Scripts\Services\TypeConverter.cs" />
     <Compile Include="Assets\Scripts\Services\UnityJsonConverter.cs" />
     <Compile Include="Assets\Scripts\SpeedBoostPickUp.cs" />
     <Compile Include="Assets\Scripts\Views\PlayerView.cs" />
