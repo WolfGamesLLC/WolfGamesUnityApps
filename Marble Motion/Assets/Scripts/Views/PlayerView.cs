@@ -13,5 +13,5 @@ public class PlayerView : MonoBehaviour , IPlayerView
     /// <summary>
     /// Fired when a player object position changes
     /// </summary>
-    public event EventHandler<PlayerPositionChangedEventArgs> OnPlayerPositionChanged;
+    public event EventHandler<OnPlayerPositionChangedEventArgs> OnPlayerPositionChanged;
 }

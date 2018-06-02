@@ -13,6 +13,6 @@ namespace MarbleMotionBackEnd.Interfaces
         /// <summary>
         /// Fired when a player object position changes
         /// </summary>
-        event EventHandler<PlayerPositionChangedEventArgs> OnPlayerPositionChanged;
+        event EventHandler<OnPlayerPositionChangedEventArgs> OnPlayerPositionChanged;
     }
 }

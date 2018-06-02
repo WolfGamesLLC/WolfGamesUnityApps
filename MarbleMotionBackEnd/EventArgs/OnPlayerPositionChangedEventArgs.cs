@@ -7,5 +7,5 @@ namespace MarbleMotionBackEnd.EventArgs
     /// <summary>
     /// Event arguments passed when the player's position changes
     /// </summary>
-    public class PlayerPositionChangedEventArgs : System.EventArgs { }
+    public class OnPlayerPositionChangedEventArgs : System.EventArgs { }
 }

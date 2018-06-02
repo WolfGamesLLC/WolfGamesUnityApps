@@ -23,6 +23,11 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         mainMenu.AddComponent<NonAsyncHttpClient>();
+        CreateStartButton();
+    }
+
+    private void CreateStartButton()
+    {
         var startButtonView = mainMenu.GetComponentInChildren<StartButtonView>();
         if (startButtonView == null)
         {
@@ -33,14 +38,14 @@ public class GameController : MonoBehaviour
         player.Id = new Guid("11111111-1111-1111-1111-111111111112");
 
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
-        StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model, 
+        StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model,
                                                                                                     startButtonView,
-                                                                                                    player, 
+                                                                                                    player,
                                                                                                     new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter()));
         IStartButtonControllerOptions options = new StartButtonControllerOptions();
         if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players/");
         if (Application.isEditor) options.Uri = new Uri("https://localhost:44340/api/players/");
-        
+
         startButtonControllerBuilder.Configure(options).Build();
     }
 
