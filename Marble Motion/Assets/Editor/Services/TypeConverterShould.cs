@@ -15,6 +15,9 @@ namespace Assets.Editor.Services
     /// </summary>
     public class TypeConverterShould
     {
+        /// <summary>
+        /// Verify a <see cref="WGVector3"/> is properly converted to a Unity <see cref="Vector3"/>
+        /// </summary>
         [Test]
         public void ConvertWGVector3ToVector3()
         {

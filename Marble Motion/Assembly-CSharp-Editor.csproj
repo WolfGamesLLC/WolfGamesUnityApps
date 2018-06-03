@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\Services\TypeConverterShould.cs" />
+    <Compile Include="Assets\Editor\Services\UnityJsonConverterShould.cs" />
     <Compile Include="Assets\Editor\StartButtonPressedShould.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Dain/Documents/WolfGames/WolfGamesUnityApps/Marble Motion/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
