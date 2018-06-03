@@ -12,7 +12,6 @@ namespace MarbleMotionBackEnd.Factories
         private IPlayerControllerOptions options;
         private readonly IPlayerModel model;
         private readonly IPlayerView view;
-        private readonly IPlayerModel player;
         private IHttpClientService httpClientService;
 
         /// <summary>

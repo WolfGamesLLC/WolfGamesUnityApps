@@ -47,7 +47,7 @@ namespace MarbleMotionBackEnd.Controllers
         {
             Uri uri = new Uri(Options.Uri.ToString().TrimEnd('/') + "/" + model.Id.ToString());
             HttpClientService.RequestPlayerData(uri, model);
-            view.SetPosition(model);
+            view.SetModel(model);
         }
     }
 }

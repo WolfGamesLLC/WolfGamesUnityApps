@@ -5,24 +5,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// The player's view object
 /// </summary>
 public class PlayerView : MonoBehaviour , IPlayerView
 {
+    public Text score;
+
     /// <summary>
     /// The instance of an object that implements <see cref="IPlayerModel"/>
     /// that this object is the view for
     /// </summary>
-    public IPlayerModel Model { get; set; }
+    public IPlayerModel Model { get; private set; }
 
     /// <summary>
     /// Update the player's avatar with its <see cref="IPlayerModel"/>
     /// </summary>
     private void Update()
     {
-//        transform.position = TypeConverter.WGVector3ToVector3(Model.Position);
     }
 
     /// <summary>
@@ -43,8 +45,10 @@ public class PlayerView : MonoBehaviour , IPlayerView
     /// with the <see cref="IPlayerModel"/> data
     /// </summary>
     /// <param name="">The <see cref="IPlayerModel"/> that contains the new position</param>
-    public void SetPosition(IPlayerModel playerModel)
+    public void SetModel(IPlayerModel playerModel)
     {
-        transform.position = TypeConverter.WGVector3ToVector3(playerModel.Position);
+        Model = playerModel;
+        transform.position = TypeConverter.WGVector3ToVector3(Model.Position);
+        score.text = Model.Score.ToString();
     }
 }

@@ -105,7 +105,7 @@ namespace MarbleMotionXUnitTest.Controllers
             _mockView.Raise(x => x.OnLoad += null, new OnPlayerLoadEventArgs()); // I don't like testing that the handler is registered this way
 
             _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"{PlayerControllerOptions.DefaultUri}{_guid}"), _mockModel), Times.Once);
-            _mockView.Verify(view => view.SetPosition(_mockModel), Times.Once);
+            _mockView.Verify(view => view.SetModel(_mockModel), Times.Once);
         }
 
         /// <summary>

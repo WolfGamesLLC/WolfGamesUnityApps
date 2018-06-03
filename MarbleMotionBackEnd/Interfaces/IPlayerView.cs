@@ -14,7 +14,7 @@ namespace MarbleMotionBackEnd.Interfaces
         /// The instance of an object that implements <see cref="IPlayerModel"/>
         /// that this object is the view for
         /// </summary>
-        IPlayerModel Model { get; set; }
+        IPlayerModel Model { get; }
         
         /// <summary>
         /// Fired when a player object position changes
@@ -27,10 +27,10 @@ namespace MarbleMotionBackEnd.Interfaces
         void RunOnLoadEvent();
 
         /// <summary>
-        /// Method used to allow the <see cref="IPlayerController"/> to set the view's position
+        /// Method used to allow the <see cref="IPlayerController"/> to set the view's data
         /// with the <see cref="IPlayerModel"/> data
         /// </summary>
-        /// <param name="">The <see cref="IPlayerModel"/> that contains the new position</param>
-        void SetPosition(IPlayerModel playerModel);
+        /// <param name="">The <see cref="IPlayerModel"/> that contains the new data</param>
+        void SetModel(IPlayerModel playerModel);
     }
 }
