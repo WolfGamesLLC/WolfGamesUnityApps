@@ -25,8 +25,8 @@ namespace MarbleMotionXUnitTest.Models
         public void ShouldSetAndGetHref()
         {
             string expected = "some link";
-            Model.Href = expected;
-            Assert.Equal(expected, Model.Href);
+            Model.href = expected;
+            Assert.Equal(expected, Model.href);
         }
     }
 }

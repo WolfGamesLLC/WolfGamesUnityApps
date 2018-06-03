@@ -43,7 +43,7 @@ public class UnityJsonConverter : IJsonImp
 
         Debug.Log("playerModelResource = {" + playerModelResource + "}");
 
-        playerModel.Score = playerModelResource.Score;
-        playerModel.Position = new WGVector3(playerModelResource.XPosition, 0f, playerModelResource.ZPosition);
+        playerModel.Score = playerModelResource.score;
+        playerModel.Position = new WGVector3(playerModelResource.xPosition, 0f, playerModelResource.zPosition);
     }
 }

@@ -36,8 +36,8 @@ namespace MarbleMotionXUnitTest.Models
         public void ShouldSetAndGetScore()
         {
             int expected = 100;
-            ((PlayerModelResource)Model).Score = expected;
-            Assert.Equal(expected, ((PlayerModelResource)Model).Score);
+            ((PlayerModelResource)Model).score = expected;
+            Assert.Equal(expected, ((PlayerModelResource)Model).score);
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace MarbleMotionXUnitTest.Models
         public void ShouldSetAndGetXPosition()
         {
             int expected = 12345;
-            ((PlayerModelResource)Model).XPosition = expected;
-            Assert.Equal(expected, ((PlayerModelResource)Model).XPosition);
+            ((PlayerModelResource)Model).xPosition = expected;
+            Assert.Equal(expected, ((PlayerModelResource)Model).xPosition);
         }
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace MarbleMotionXUnitTest.Models
         public void ShouldSetAndGetYPosition()
         {
             int expected = 12345;
-            ((PlayerModelResource)Model).ZPosition = expected;
-            Assert.Equal(expected, ((PlayerModelResource)Model).ZPosition);
+            ((PlayerModelResource)Model).zPosition = expected;
+            Assert.Equal(expected, ((PlayerModelResource)Model).zPosition);
         }
     }
 }

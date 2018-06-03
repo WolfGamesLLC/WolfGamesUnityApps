@@ -8,6 +8,6 @@
         /// <summary>
         /// Contains the link used to access the resource
         /// </summary>
-        public string Href { get; set; }
+        public string href;
     }
 }
