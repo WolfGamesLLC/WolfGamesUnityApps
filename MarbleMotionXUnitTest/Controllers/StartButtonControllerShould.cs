@@ -120,7 +120,7 @@ namespace MarbleMotionXUnitTest.Controllers
 
             _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs()); // I don't like testing that the handler is registered this way
 
-            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"{StartButtonControllerOptions.DefaultUri}{_guid}")), Times.Once);
+            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"{StartButtonControllerOptions.DefaultUri}{_guid}"), _player), Times.Once);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace MarbleMotionXUnitTest.Controllers
 
             _dut.HandleOnClickedEvent(null, new StartButtonClickedEventArgs());
 
-            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}")), Times.Once);
+            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}"), _player), Times.Once);
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace MarbleMotionXUnitTest.Controllers
 
             _dut.HandleOnClickedEvent(null, new StartButtonClickedEventArgs());
 
-            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}")), Times.Once);
+            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}"), _player), Times.Once);
         }
     }
 }

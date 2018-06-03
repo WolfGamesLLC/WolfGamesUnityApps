@@ -13,6 +13,11 @@ namespace MarbleMotionBackEnd.Services
         private IHttpClientImp httpClientImp;
         private IJsonImp jsonImp;
 
+        /// <summary>
+        /// The default constructor 
+        /// </summary>
+        /// <param name="httpClientImp">The <see cref="IHttpClientImp"/> to use when making requests</param>
+        /// <param name="jsonImp">The <see cref="IJsonImp"/> to use when converting JSON responses to objects</param>
         public HttpClientService(IHttpClientImp httpClientImp, IJsonImp jsonImp)
         {
             this.httpClientImp = httpClientImp ?? throw new ArgumentNullException(nameof(httpClientImp));
@@ -20,19 +25,14 @@ namespace MarbleMotionBackEnd.Services
         }
 
         /// <summary>
-        /// Make a request using the supplied HttpClient
+        /// Make a request for player data
         /// </summary>
-        /// <param name="request">The Uri to request</param>
-        /// <returns>The player data</returns>
-        public IPlayerModel RequestPlayerData(Uri request)
-        {
-            WGHttpResponseMessage responseMessage = httpClientImp.Request(request);
-            return jsonImp.PlayerFromJson(responseMessage.Content.Body);
-        }
-
+        /// <param name="uri">The <see cref="Uri"/> of the API</param>
+        /// <param name="model">The <see cref="IPlayerModel"/> to populate with the result</param>
         public void RequestPlayerData(Uri uri, IPlayerModel model)
         {
-            throw new NotImplementedException();
+            WGHttpResponseMessage responseMessage = httpClientImp.Request(uri);
+            jsonImp.PlayerFromJson(responseMessage.Content.Body, model);
         }
     }
 }

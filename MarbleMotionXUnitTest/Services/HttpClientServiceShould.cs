@@ -64,14 +64,15 @@ namespace MarbleMotionXUnitTest.Services
             responseContent.Body = expectedJson;
             var responseMessage = new WGHttpResponseMessage();
             responseMessage.Content = responseContent;
+            IPlayerModel mockPlayer = new PlayerModel();
 
             mockHttpClientImp.SetReturnsDefault<WGHttpResponseMessage>(responseMessage);
 
             IHttpClientService httpClientService = new HttpClientService(mockHttpClientImp.Object, mockJsonImp.Object);
-            IPlayerModel player = httpClientService.RequestPlayerData(expectedUri);
+            httpClientService.RequestPlayerData(expectedUri, mockPlayer);
 
             mockHttpClientImp.Verify(imp => imp.Request(expectedUri));
-            mockJsonImp.Verify(imp => imp.PlayerFromJson(responseMessage.Content.Body));
+            mockJsonImp.Verify(imp => imp.PlayerFromJson(responseMessage.Content.Body, mockPlayer));
         }
     }
 }

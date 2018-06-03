@@ -10,11 +10,10 @@ namespace MarbleMotionBackEnd.Interfaces
     public interface IHttpClientService
     {
         /// <summary>
-        /// Make a request
+        /// Make a request for player data
         /// </summary>
-        /// <param name="request">The Uri used to request the player data</param>
-        /// <returns>The IPlayerModel data</returns>
-        IPlayerModel RequestPlayerData(Uri request);
+        /// <param name="uri">The <see cref="Uri"/> of the API</param>
+        /// <param name="model">The <see cref="IPlayerModel"/> to populate with the result</param>
         void RequestPlayerData(Uri uri, IPlayerModel model);
     }
 }

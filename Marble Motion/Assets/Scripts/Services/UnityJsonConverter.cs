@@ -36,17 +36,14 @@ public class UnityJsonConverter : IJsonImp
     /// Convert a <see cref="IEnumerable{char}"/> in JSON format to an object that implements <see cref="IPlayerModel"/>
     /// </summary>
     /// <param name="jsonFormatedText">the JSON <see cref="IEnumerable<char>"/> to be converted</param>
-    /// <returns>the resultant object implementing <see cref="IPlayerModel"/></returns>
-    public IPlayerModel PlayerFromJson(IEnumerable<char> jsonFormatedText)
+    /// <param name="playerModel">the <see cref="IPlayerModel"/> to be populated</param>
+    public void PlayerFromJson(IEnumerable<char> jsonFormatedText, IPlayerModel playerModel)
     {
         var playerModelResource = FromJson<PlayerModelResource>(jsonFormatedText);
 
         Debug.Log("playerModelResource = {" + playerModelResource + "}");
 
-        var playerModel = new PlayerModel();
         playerModel.Score = playerModelResource.Score;
         playerModel.Position = new WGVector3(playerModelResource.XPosition, 0f, playerModelResource.ZPosition);
-
-        return playerModel;
     }
 }

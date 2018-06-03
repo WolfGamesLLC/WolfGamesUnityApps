@@ -53,17 +53,16 @@ public class GameController : MonoBehaviour
 
     private void CreatePlayer()
     {
-        var playerView = mainMenu.GetComponentInChildren<Player>();
+        var playerView = player.GetComponent<PlayerView>();
         if (playerView == null)
         {
             Debug.Log("couldn't locate PlayerView in main menu");
         }
 
-        var player = new PlayerModel();
-        player.Id = new Guid("11111111-1111-1111-1111-111111111112");
-        player.Position = new WGVector3();
-
         PlayerModelFactory PlayerModelFactory = new PlayerModelFactory();
+        PlayerModelFactory.Model.Id = new Guid("11111111-1111-1111-1111-111111111112");
+        PlayerModelFactory.Model.Position = new WGVector3();
+
         PlayerControllerBuilder PlayerControllerBuilder = new PlayerControllerBuilder(PlayerModelFactory.Model,
                                                                                                     playerView);
         

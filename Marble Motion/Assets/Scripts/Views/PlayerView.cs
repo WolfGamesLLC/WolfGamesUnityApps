@@ -37,4 +37,14 @@ public class PlayerView : MonoBehaviour , IPlayerView
     /// Fired when a player object needs to be loaded from storage
     /// </summary>
     public event EventHandler<OnPlayerLoadEventArgs> OnLoad;
+
+    /// <summary>
+    /// Method used to allow the <see cref="IPlayerController"/> to set the view's position
+    /// with the <see cref="IPlayerModel"/> data
+    /// </summary>
+    /// <param name="">The <see cref="IPlayerModel"/> that contains the new position</param>
+    public void SetPosition(IPlayerModel playerModel)
+    {
+        transform.position = TypeConverter.WGVector3ToVector3(playerModel.Position);
+    }
 }

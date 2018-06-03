@@ -34,10 +34,11 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         [Fact(Skip = "Until I can figure out how to properly unit test Unity internal methods")]
         public void MakeHttpGetRequest()
         {
-            IHttpClientService _dut = new HttpClientService(null, null);
-            var response = _dut.RequestPlayerData(new Uri(WGProdUri));
 
-            Assert.Equal(new PlayerModel(), response);
+            IHttpClientService _dut = new HttpClientService(null, null);
+            _dut.RequestPlayerData(new Uri(WGProdUri), null);
+
+//            Assert.Equal(new PlayerModel(), response);
         }
     }
 }

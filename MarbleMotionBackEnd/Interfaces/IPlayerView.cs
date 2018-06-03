@@ -25,5 +25,12 @@ namespace MarbleMotionBackEnd.Interfaces
         /// Method used to allow unity to run the OnLoad event
         /// </summary>
         void RunOnLoadEvent();
+
+        /// <summary>
+        /// Method used to allow the <see cref="IPlayerController"/> to set the view's position
+        /// with the <see cref="IPlayerModel"/> data
+        /// </summary>
+        /// <param name="">The <see cref="IPlayerModel"/> that contains the new position</param>
+        void SetPosition(IPlayerModel playerModel);
     }
 }

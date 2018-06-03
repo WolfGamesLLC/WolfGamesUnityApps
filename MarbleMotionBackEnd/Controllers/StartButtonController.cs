@@ -49,7 +49,7 @@ namespace MarbleMotionBackEnd.Controllers
         public void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
             Uri uri = new Uri(Options.Uri.ToString().TrimEnd('/') + "/" + _player.Id.ToString());
-            _player = _httpClientService.RequestPlayerData(uri);
+            _httpClientService.RequestPlayerData(uri, _player);
         }
     }
 }
