@@ -24,7 +24,7 @@ namespace MarbleMotionXUnitTest.Factories
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullStartButtonModel()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerBuilder(null, null, null, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerBuilder(null, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: model", ex.Message);
         }
 
@@ -35,33 +35,8 @@ namespace MarbleMotionXUnitTest.Factories
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullStartButtonView()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object, null, null, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: view", ex.Message);
-        }
-
-        /// <summary>
-        /// Verify a <see cref="StartButtonControllerBuilder"/> throws an 
-        /// <see cref="ArgumentNullException"/> unless a valid <see cref="PlayerModel"/> is used
-        /// </summary>
-        [Fact]
-        public void ThrowArgumentNullExceptionFromConstructorWithNullPlayerModel()
-        {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object, 
-                                                                                                new Mock<IStartButtonView>().Object, null, null));
-            Assert.Equal("Value cannot be null.\r\nParameter name: player", ex.Message);
-        }
-
-        /// <summary>
-        /// Verify a <see cref="StartButtonControllerBuilder"/> throws an 
-        /// <see cref="ArgumentNullException"/> unless a valid <see cref="HttpClientService"/> is used
-        /// </summary>
-        [Fact]
-        public void ThrowArgumentNullExceptionFromConstructorWithNullHttpClientService()
-        {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object,
-                                                                                                new Mock<IStartButtonView>().Object,
-                                                                                                new Mock<IPlayerModel>().Object, null));
-            Assert.Equal("Value cannot be null.\r\nParameter name: httpClientService", ex.Message);
         }
 
         /// <summary>
@@ -72,9 +47,7 @@ namespace MarbleMotionXUnitTest.Factories
         public void CreateStartButtonController()
         {
             IStartButtonController controller = new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object, 
-                                                                                    new Mock<IStartButtonView>().Object, 
-                                                                                    new Mock<IPlayerModel>().Object,
-                                                                                    new Mock<IHttpClientService>().Object)
+                                                                                    new Mock<IStartButtonView>().Object)
                                                                                     .Build();
             Assert.NotNull(controller);
         }
@@ -87,9 +60,7 @@ namespace MarbleMotionXUnitTest.Factories
         public void ConfigureStartButton()
         {
             IStartButtonController controller = new StartButtonControllerBuilder(new Mock<IStartButtonModel>().Object,
-                                                                                    new Mock<IStartButtonView>().Object,
-                                                                                    new Mock<IPlayerModel>().Object,
-                                                                                    new Mock<IHttpClientService>().Object)
+                                                                                    new Mock<IStartButtonView>().Object)
                                                                                     .Configure(new StartButtonControllerOptions())
                                                                                     .Build();
             Assert.NotNull(controller.Options);

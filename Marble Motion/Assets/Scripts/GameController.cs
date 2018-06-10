@@ -41,13 +41,8 @@ public class GameController : MonoBehaviour
 
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
         StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model,
-                                                                                                    startButtonView,
-                                                                                                    player,
-                                                                                                    new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter()));
+                                                                                                    startButtonView);
         IStartButtonControllerOptions options = new StartButtonControllerOptions();
-        if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players/");
-        if (Application.isEditor) options.Uri = new Uri("https://localhost:44340/api/players/");
-
         startButtonControllerBuilder.Configure(options).Build();
     }
 
@@ -70,6 +65,7 @@ public class GameController : MonoBehaviour
         IPlayerControllerOptions options = new PlayerControllerOptions();
         if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players/");
         if (Application.isEditor) options.Uri = new Uri("https://localhost:44340/api/players/");
+//        options.Uri = new Uri("https://localhost:44340/api/players/");
 
         IHttpClientService httpClient = new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter());
 

@@ -28,10 +28,6 @@ namespace MarbleMotionXUnitTest.Controllers
         private Mock<IStartButtonModel> _mockModel;
         private StartButtonController _dut;
         private Mock<IStartButtonView> _mockView;
-        private PlayerModel _player;
-        private Mock<IHttpClientService> _mockHttpClientService;
-        private Dictionary<Uri, HttpResponseMessage> _mockResponses = new Dictionary<Uri, HttpResponseMessage>();
-        private Guid _guid;
 
         /// <summary>
         /// Initialize the test suite
@@ -41,11 +37,8 @@ namespace MarbleMotionXUnitTest.Controllers
         {
             _mockModel = new Mock<IStartButtonModel>();
             _mockView = new Mock<IStartButtonView>();
-            _mockHttpClientService = new Mock<IHttpClientService>();
 
-            _guid = Guid.NewGuid();
-            _player = new PlayerModel();
-            _dut = new StartButtonController(_mockModel.Object, _mockView.Object, _player, _mockHttpClientService.Object);
+            _dut = new StartButtonController(_mockModel.Object, _mockView.Object);
             _dut.Options = new StartButtonControllerOptions();
         }
 
@@ -55,7 +48,7 @@ namespace MarbleMotionXUnitTest.Controllers
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullModel()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(null, null, null, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(null, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: model", ex.Message);
         }
 
@@ -65,28 +58,8 @@ namespace MarbleMotionXUnitTest.Controllers
         [Fact]
         public void ThrowArgumentNullExceptionFromConstructorWithNullView()
         {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(_mockModel.Object, null, null, null));
+            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(_mockModel.Object, null));
             Assert.Equal("Value cannot be null.\r\nParameter name: view", ex.Message);
-        }
-
-        /// <summary>
-        /// Throw an <see cref="ArgumentNullException"/> when a <see cref="IPlayerModel"/> is not injected on construction
-        /// </summary>
-        [Fact]
-        public void ThrowArgumentNullExceptionFromConstructorWithNullPlayer()
-        {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(_mockModel.Object, _mockView.Object, null, null));
-            Assert.Equal("Value cannot be null.\r\nParameter name: player", ex.Message);
-        }
-
-        /// <summary>
-        /// Throw an <see cref="ArgumentNullException"/> when a <see cref="IPlayerModel"/> is not injected on construction
-        /// </summary>
-        [Fact]
-        public void ThrowArgumentNullExceptionFromConstructorWithNullHttpClientService()
-        {
-            var ex = Assert.Throws<ArgumentNullException>(() => new StartButtonController(_mockModel.Object, _mockView.Object, _player, null));
-            Assert.Equal("Value cannot be null.\r\nParameter name: httpClientService", ex.Message);
         }
 
         /// <summary>
@@ -95,7 +68,7 @@ namespace MarbleMotionXUnitTest.Controllers
         [Fact]
         public void CreateStartButtonController()
         {
-            Assert.NotNull(new StartButtonController(_mockModel.Object, _mockView.Object, _player, _mockHttpClientService.Object));
+            Assert.NotNull(new StartButtonController(_mockModel.Object, _mockView.Object));
         }
 
         /// <summary>
@@ -108,49 +81,6 @@ namespace MarbleMotionXUnitTest.Controllers
             _dut.Options = mockConfig.Object;
 
             Assert.NotNull(_dut.Options);
-        }
-
-        /// <summary>
-        /// Verify that the <see cref="IStartButtonView.OnClicked"/> event is set
-        /// </summary>
-        [Fact]
-        public void LoadPlayerDataOnClickedEventAsync()
-        {
-            _player.Id = _guid;
-
-            _mockView.Raise(x => x.OnClicked += null, new StartButtonClickedEventArgs()); // I don't like testing that the handler is registered this way
-
-            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"{StartButtonControllerOptions.DefaultUri}{_guid}"), _player), Times.Once);
-        }
-
-        /// <summary>
-        /// Verify that the <see cref="StartButtonController.HandleOnClickedEvent(object, StartButtonClickedEventArgs)"/> event 
-        /// adds a / when none is present on the original path
-        /// </summary>
-        [Fact]
-        public void PlayerDataRequestUriAddForwardSlashToEnd()
-        {
-            _player.Id = _guid;
-            _dut.Options.Uri = new Uri("https://marbelmotion.wolfgamesllc.com/api/players");
-
-            _dut.HandleOnClickedEvent(null, new StartButtonClickedEventArgs());
-
-            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}"), _player), Times.Once);
-        }
-
-        /// <summary>
-        /// Verify that the <see cref="StartButtonController.HandleOnClickedEvent(object, StartButtonClickedEventArgs)"/> event 
-        /// adds a / when none is present on the original path
-        /// </summary>
-        [Fact]
-        public void PlayerDataRequestUriNoForwardSlashToEnd()
-        {
-            _player.Id = _guid;
-            _dut.Options.Uri = new Uri("https://marbelmotion.wolfgamesllc.com/api/players/");
-
-            _dut.HandleOnClickedEvent(null, new StartButtonClickedEventArgs());
-
-            _mockHttpClientService.Verify(service => service.RequestPlayerData(new Uri($"https://marbelmotion.wolfgamesllc.com/api/players/{_guid}"), _player), Times.Once);
         }
     }
 }

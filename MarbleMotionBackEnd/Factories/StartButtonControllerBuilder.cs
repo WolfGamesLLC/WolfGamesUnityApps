@@ -13,18 +13,14 @@ namespace MarbleMotionBackEnd.Factories
         private IStartButtonControllerOptions options;
         private IStartButtonModel model;
         private IStartButtonView view;
-        private IPlayerModel player;
-        private IHttpClientService httpClientService;
 
         /// <summary>
         /// Create a start button controller factory
         /// </summary>
-        public StartButtonControllerBuilder(IStartButtonModel model, IStartButtonView view, IPlayerModel player, IHttpClientService httpClientService)
+        public StartButtonControllerBuilder(IStartButtonModel model, IStartButtonView view)
         {
             this.model = model ?? throw new ArgumentNullException(nameof(model));
             this.view = view ?? throw new ArgumentNullException(nameof(view));
-            this.player = player ?? throw new ArgumentNullException(nameof(player));
-            this.httpClientService = httpClientService ?? throw new ArgumentNullException(nameof(httpClientService));
         }
 
         /// <summary>
@@ -46,10 +42,8 @@ namespace MarbleMotionBackEnd.Factories
         {
             if (model == null) throw new ArgumentNullException(nameof(model));
             if (view == null) throw new ArgumentNullException(nameof(view));
-            if (player == null) throw new ArgumentNullException(nameof(player));
-            if (httpClientService == null) throw new ArgumentNullException(nameof(httpClientService));
 
-            var controller = new StartButtonController(model, view, player, httpClientService);
+            var controller = new StartButtonController(model, view);
             controller.Options = options;
 
             return controller;

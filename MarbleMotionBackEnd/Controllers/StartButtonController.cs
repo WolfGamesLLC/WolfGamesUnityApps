@@ -16,8 +16,6 @@ namespace MarbleMotionBackEnd.Controllers
     {
         private readonly IStartButtonModel _model;
         private readonly IStartButtonView _view;
-        private IPlayerModel _player;
-        private readonly IHttpClientService _httpClientService;
 
         /// <summary>
         /// The object that implements <see cref="IConfiguration"/> that contains the
@@ -30,13 +28,10 @@ namespace MarbleMotionBackEnd.Controllers
         /// </summary>
         /// <param name="model">an instance of an object that implements <see cref="IStartButtonModel"/></param>
         /// <param name="view">an instance of an object that implements <see cref="IStartButtonView"/></param>
-        /// <param name="player">an instance of an object that implements <see cref="IPlayerModel"/></param>
-        public StartButtonController(IStartButtonModel model, IStartButtonView view, IPlayerModel player, IHttpClientService httpClientService)
+        public StartButtonController(IStartButtonModel model, IStartButtonView view)
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
             _view = view ?? throw new ArgumentNullException(nameof(view));
-            _player = player ?? throw new ArgumentNullException(nameof(player));
-            _httpClientService = httpClientService ?? throw new ArgumentNullException(nameof(httpClientService));
 
             _view.OnClicked += HandleOnClickedEvent;
         }
@@ -48,8 +43,6 @@ namespace MarbleMotionBackEnd.Controllers
         /// <param name="startButtonClickedEventArgs">An instance of a <see cref="StartButtonClickedEventArgs"/> class</param>
         public void HandleOnClickedEvent(object sender, StartButtonClickedEventArgs startButtonClickedEventArgs)
         {
-            Uri uri = new Uri(Options.Uri.ToString().TrimEnd('/') + "/" + _player.Id.ToString());
-            _httpClientService.RequestPlayerData(uri, _player);
         }
     }
 }

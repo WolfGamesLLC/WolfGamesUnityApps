@@ -18,8 +18,6 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         private StartButtonModel _startButton;
         private StartButtonController _dut;
         private StartButtonView _view;
-        private PlayerModel _player;
-        private HttpClientService httpClientService;
 
         /// <summary>
         /// Initialize the test suite
@@ -28,20 +26,6 @@ namespace MarbleMotionBackEnd.Integration.XUnitTestSuite
         {
             _startButton = new StartButtonModel();
             _view = new StartButtonView();
-            _player = new PlayerModel();
-            httpClientService = new HttpClientService(null, null);
-        }
-
-        /// <summary>
-        /// Verify that a click on the <see cref="StartButtonView"/> loads the current user's player data
-        /// </summary>
-        [Fact(Skip = "This is a more difficult test. Working on getting simpler ones working first")]
-        public void LoadsPlayerDataAndDisableMenuOnClick()
-        {
-            _dut = new StartButtonController(_startButton, _view, _player, httpClientService);
-            object[] parms = { this, new StartButtonClickedEventArgs() };
-
-            throw new NotImplementedException("This is a more difficult test. Working on getting simpler ones working first");
         }
     }
 }
