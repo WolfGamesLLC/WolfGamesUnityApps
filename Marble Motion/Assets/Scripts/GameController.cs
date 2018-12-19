@@ -10,6 +10,7 @@ using System.Net.Http;
 using MarbleMotionBackEnd.Interfaces;
 using System;
 using MarbleMotionBackEnd.Options;
+using System.Runtime.InteropServices;
 
 public class GameController : MonoBehaviour
 {
@@ -46,6 +47,15 @@ public class GameController : MonoBehaviour
         startButtonControllerBuilder.Configure(options).Build();
     }
 
+    [DllImport("__Internal")]
+    private static extern string GetCookies();
+
+    public void HandleGetCookieClicked()
+    {
+        var cookie = GetCookies();
+        Debug.Log("cookie = {" + cookie + "}");
+    }
+
     private void CreatePlayer()
     {
         var playerView = player.GetComponent<PlayerView>();
@@ -53,7 +63,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("couldn't locate PlayerView in main menu");
         }
-
+        
         PlayerModelFactory PlayerModelFactory = new PlayerModelFactory();
         PlayerModelFactory.Model.Id = new Guid("11111111-1111-1111-1111-111111111112");
         PlayerModelFactory.Model.Position = new WGVector3();
@@ -65,7 +75,7 @@ public class GameController : MonoBehaviour
         IPlayerControllerOptions options = new PlayerControllerOptions();
         if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players/");
         if (Application.isEditor) options.Uri = new Uri("https://localhost:44340/api/players/");
-//        options.Uri = new Uri("https://localhost:44340/api/players/");
+        options.Uri = new Uri("https://localhost:44340/api/players/");
 
         IHttpClientService httpClient = new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter());
 
@@ -80,6 +90,8 @@ public class GameController : MonoBehaviour
 
         BallController ball = new BallController();
         ball.SetMovementController(player);
+
+        HandleGetCookieClicked();
 
         game = new Game(mainMenu, ball);
 
