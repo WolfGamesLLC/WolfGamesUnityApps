@@ -2,6 +2,7 @@
 using System;
 using MarbleMotionBackEnd.Http;
 using MarbleMotionBackEnd.Models;
+using System.Runtime.InteropServices;
 
 namespace MarbleMotionBackEnd.Services
 {
@@ -33,6 +34,14 @@ namespace MarbleMotionBackEnd.Services
         {
             WGHttpResponseMessage responseMessage = httpClientImp.Request(uri);
             jsonImp.PlayerFromJson(responseMessage.Content.Body, model);
+        }
+
+        [DllImport("__Internal")]
+        private static extern string GetCookies();
+
+        public string HandleGetCookieClicked()
+        {
+            return GetCookies();
         }
     }
 }

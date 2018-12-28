@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using MarbleMotionBackEnd.Factories;
 using MarbleMotionBackEnd.Models;
-using MarbleMotionBackEnd.Services;
-using System.Net.Http;
-using MarbleMotionBackEnd.Interfaces;
 using System;
 using MarbleMotionBackEnd.Options;
-using System.Runtime.InteropServices;
+using MarbleMotionBackEnd.Interfaces;
+using MarbleMotionBackEnd.Services;
 
 public class GameController : MonoBehaviour
 {
@@ -23,6 +21,8 @@ public class GameController : MonoBehaviour
     // Initilaize the game
     private void Awake()
     {
+        Debug.Log("Game Controller Awake running");
+
         mainMenu.AddComponent<NonAsyncHttpClient>();
         CreateStartButton();
         CreatePlayer();
@@ -30,15 +30,19 @@ public class GameController : MonoBehaviour
 
     private void CreateStartButton()
     {
+        Debug.Log("Game Controller CreateStartButton running");
+
         var startButtonView = mainMenu.GetComponentInChildren<StartButtonView>();
         if (startButtonView == null)
         {
             Debug.Log("couldn't locate StartButtonView in main menu");
         }
 
-        var player = new PlayerModel();
-        player.Id = new Guid("11111111-1111-1111-1111-111111111112");
-        player.Position = new WGVector3();
+        var player = new PlayerModel
+        {
+            Id = new Guid("11111111-1111-1111-1111-111111111112"),
+            Position = new WGVector3()
+        };
 
         StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
         StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model,
@@ -47,17 +51,10 @@ public class GameController : MonoBehaviour
         startButtonControllerBuilder.Configure(options).Build();
     }
 
-    [DllImport("__Internal")]
-    private static extern string GetCookies();
-
-    public void HandleGetCookieClicked()
-    {
-        var cookie = GetCookies();
-        Debug.Log("cookie = {" + cookie + "}");
-    }
-
     private void CreatePlayer()
     {
+        Debug.Log("Game Controller CreatePlayer running");
+
         var playerView = player.GetComponent<PlayerView>();
         if (playerView == null)
         {
@@ -78,6 +75,7 @@ public class GameController : MonoBehaviour
         options.Uri = new Uri("https://localhost:44340/api/players/");
 
         IHttpClientService httpClient = new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter());
+        Debug.Log("cookie = {" + httpClient.HandleGetCookieClicked() + "}");
 
         PlayerControllerBuilder.Configure(options).ConfigureHttpClientService(httpClient).Build();
     }
@@ -85,13 +83,13 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Debug.Log("Game Controller Start running");
+
         MainMenuController mainMenu = new MainMenuController();
         mainMenu.SetScoreController(this.menu);
 
         BallController ball = new BallController();
         ball.SetMovementController(player);
-
-        HandleGetCookieClicked();
 
         game = new Game(mainMenu, ball);
 
@@ -110,6 +108,8 @@ public class GameController : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Game Controller OnDestroy running");
+
         //  Use this call for wherever a player triggers a custom event
         Analytics.CustomEvent("gameOver", new Dictionary<string, object>
         {

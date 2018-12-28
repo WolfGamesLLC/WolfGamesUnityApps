@@ -15,5 +15,7 @@ namespace MarbleMotionBackEnd.Interfaces
         /// <param name="uri">The <see cref="Uri"/> of the API</param>
         /// <param name="model">The <see cref="IPlayerModel"/> to populate with the result</param>
         void RequestPlayerData(Uri uri, IPlayerModel model);
+
+        string HandleGetCookieClicked();
     }
 }
