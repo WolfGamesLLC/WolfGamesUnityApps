@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using System.Reflection;
 using UnityEngine;
 
-public interface IPlayerController
+public interface IOldPlayerController
 {
     void StartPlayer();
 }
