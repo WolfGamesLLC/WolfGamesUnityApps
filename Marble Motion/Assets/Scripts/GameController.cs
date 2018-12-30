@@ -3,18 +3,88 @@ using UnityEngine.Analytics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using MarbleMotionBackEnd.Factories;
+using MarbleMotionBackEnd.Models;
+using System;
+using MarbleMotionBackEnd.Options;
+using MarbleMotionBackEnd.Interfaces;
+using MarbleMotionBackEnd.Services;
 
 public class GameController : MonoBehaviour
 {
     public MenuController menu;
-    public PlayerController player;
+    public OldPlayerController player;
     public GameObject mainMenu;
 
     Game game;
 
+    // Initilaize the game
+    private void Awake()
+    {
+        Debug.Log("Game Controller Awake running");
+
+        mainMenu.AddComponent<NonAsyncHttpClient>();
+        CreateStartButton();
+        CreatePlayer();
+    }
+
+    private void CreateStartButton()
+    {
+        Debug.Log("Game Controller CreateStartButton running");
+
+        var startButtonView = mainMenu.GetComponentInChildren<StartButtonView>();
+        if (startButtonView == null)
+        {
+            Debug.Log("couldn't locate StartButtonView in main menu");
+        }
+
+        var player = new PlayerModel
+        {
+            Id = new Guid("11111111-1111-1111-1111-111111111112"),
+            Position = new WGVector3()
+        };
+
+        StartButtonModelFactory startButtonModelFactory = new StartButtonModelFactory();
+        StartButtonControllerBuilder startButtonControllerBuilder = new StartButtonControllerBuilder(startButtonModelFactory.Model,
+                                                                                                    startButtonView);
+        IStartButtonControllerOptions options = new StartButtonControllerOptions();
+        startButtonControllerBuilder.Configure(options).Build();
+    }
+
+    private void CreatePlayer()
+    {
+        Debug.Log("Game Controller CreatePlayer running");
+
+        var playerView = player.GetComponent<PlayerView>();
+        if (playerView == null)
+        {
+            Debug.Log("couldn't locate PlayerView in main menu");
+        }
+        
+        PlayerModelFactory PlayerModelFactory = new PlayerModelFactory();
+        PlayerModelFactory.Model.Id = new Guid("11111111-1111-1111-1111-111111111112");
+        PlayerModelFactory.Model.Position = new WGVector3();
+
+        PlayerControllerBuilder PlayerControllerBuilder = new PlayerControllerBuilder(PlayerModelFactory.Model,
+                                                                                                    playerView);
+        
+        
+        IPlayerControllerOptions options = new PlayerControllerOptions();
+        if (Debug.isDebugBuild) options.Uri = new Uri("https://marblemotiondev.wolfgamesllc.com/api/players/");
+        if (Application.isEditor) options.Uri = new Uri("https://localhost:44340/api/players/");
+        options.Uri = new Uri("https://localhost:44340/api/players/");
+
+        IHttpClientService httpClient = new HttpClientService(mainMenu.GetComponent<NonAsyncHttpClient>(), new UnityJsonConverter());
+        Debug.Log("cookie = {" + httpClient.HandleGetCookieClicked() + "}");
+
+        PlayerControllerBuilder.Configure(options).ConfigureHttpClientService(httpClient).Build();
+    }
+
     // Use this for initialization
     void Start()
     {
+        Debug.Log("Game Controller Start running");
+
         MainMenuController mainMenu = new MainMenuController();
         mainMenu.SetScoreController(this.menu);
 
@@ -26,7 +96,7 @@ public class GameController : MonoBehaviour
         //        SaveLoad.Load();
         //        game.Score = SaveLoad.data.score;
 
-        StartCoroutine(GetScores());
+//        StartCoroutine(GetScores());
     }
 
     // Update is called once per frame
@@ -38,6 +108,8 @@ public class GameController : MonoBehaviour
 
     public void OnDestroy()
     {
+        Debug.Log("Game Controller OnDestroy running");
+
         //  Use this call for wherever a player triggers a custom event
         Analytics.CustomEvent("gameOver", new Dictionary<string, object>
         {
@@ -52,7 +124,7 @@ public class GameController : MonoBehaviour
         //        Analytics.SetUserGender(Gender.Male);
         //        Analytics.SetUserBirthYear(2014);
 
-        PostScores(transform.position.x.ToString(), transform.position.z.ToString(), game.Score);
+//        PostScores(transform.position.x.ToString(), transform.position.z.ToString(), game.Score);
     }
 
     private string secretKey = "mySecretKey"; // Edit this value and make sure it's the same as the one stored on the server

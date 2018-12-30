@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-public class PlayerController : MonoBehaviour, IMovementController
+public class OldPlayerController : MonoBehaviour, IMovementController
 {
     public BallController ballController;
 
